@@ -1,0 +1,1698 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ΨΥΧΟΛΟΓΟΣ | Τεστ Ψυχικής Αυτοαξιολόγησης</title>
+  <meta name="description" content="Διάλεξε το τεστ που θέλεις και ανακάλυψε το επίπεδο ψυχολογικής ευεξίας σου μέσα από μία δομημένη αυτοαξιολόγηση." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#ffffff;
+      --bg-soft:#faf8ff;
+      --card:#ffffff;
+      --card-soft:#f7f4ff;
+      --text:#201a35;
+      --muted:#6f6784;
+      --border:#ebe6f8;
+      --primary:#7b5cff;
+      --primary-dark:#6646f6;
+      --primary-soft:#f1edff;
+      --danger:#e8567b;
+      --danger-soft:#fff2f5;
+      --success:#24a86b;
+      --success-soft:#eefaf4;
+      --shadow:0 15px 45px rgba(84,52,189,.08);
+      --radius:26px;
+    }
+
+    *{box-sizing:border-box}
+    html,body{
+      margin:0;
+      padding:0;
+      font-family:'Inter',system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+      background:linear-gradient(180deg,#fff 0%,#faf8ff 100%);
+      color:var(--text);
+    }
+    body{
+      min-height:100vh;
+    }
+    a{color:inherit}
+    button,input,select{
+      font:inherit;
+    }
+    .container{
+      width:min(1180px,92vw);
+      margin:0 auto;
+    }
+    .topbar{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      padding:22px 0 10px;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      font-weight:800;
+      letter-spacing:.08em;
+    }
+    .brand-badge{
+      width:42px;
+      height:42px;
+      border-radius:14px;
+      background:linear-gradient(135deg,var(--primary),#ad96ff);
+      color:#fff;
+      display:grid;
+      place-items:center;
+      box-shadow:var(--shadow);
+      font-size:18px;
+    }
+    .brand small{
+      display:block;
+      letter-spacing:0;
+      font-weight:500;
+      color:var(--muted);
+      font-size:.82rem;
+      margin-top:2px;
+    }
+
+    .hero{
+      display:grid;
+      grid-template-columns:1.05fr .95fr;
+      gap:32px;
+      align-items:center;
+      padding:30px 0 14px;
+    }
+    .hero-copy h1{
+      font-size:clamp(2rem,5vw,4rem);
+      line-height:1.04;
+      margin:0 0 14px;
+      letter-spacing:-.04em;
+    }
+    .hero-copy p{
+      color:var(--muted);
+      font-size:1.06rem;
+      line-height:1.75;
+      margin:0 0 24px;
+      max-width:720px;
+    }
+    .hero-meta{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+    .pill{
+      padding:11px 16px;
+      border-radius:999px;
+      background:var(--primary-soft);
+      color:var(--primary-dark);
+      font-weight:600;
+      border:1px solid #e4dcff;
+      font-size:.92rem;
+    }
+    .hero-card{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:36px;
+      box-shadow:var(--shadow);
+      padding:22px;
+      min-height:290px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+    }
+    .hero-card-top{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap:12px;
+    }
+    .eyebrow{
+      font-size:.82rem;
+      text-transform:uppercase;
+      letter-spacing:.12em;
+      color:var(--muted);
+      font-weight:700;
+      margin-bottom:8px;
+    }
+    .hero-card h3{
+      font-size:1.6rem;
+      margin:0 0 8px;
+      line-height:1.15;
+      letter-spacing:-.03em;
+    }
+    .hero-card p{
+      color:var(--muted);
+      margin:0;
+      line-height:1.6;
+    }
+    .floating-mini{
+      border:1px solid var(--border);
+      border-radius:24px;
+      padding:12px;
+      background:var(--bg-soft);
+    }
+    .floating-mini strong{
+      display:block;
+      font-size:1.35rem;
+      color:var(--primary-dark);
+      margin-bottom:4px;
+    }
+
+    .section-title{
+      display:flex;
+      justify-content:space-between;
+      align-items:end;
+      gap:16px;
+      margin:34px 0 18px;
+    }
+    .section-title h2{
+      margin:0;
+      font-size:clamp(1.55rem,3.2vw,2.3rem);
+      letter-spacing:-.03em;
+    }
+    .section-title p{
+      margin:7px 0 0;
+      color:var(--muted);
+      line-height:1.6;
+      max-width:760px;
+    }
+
+    .tests-grid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:18px;
+      margin-bottom:24px;
+    }
+    .test-card{
+      position:relative;
+      overflow:hidden;
+      border:1px solid var(--border);
+      background:var(--card);
+      border-radius:28px;
+      padding:20px;
+      box-shadow:var(--shadow);
+      transition:transform .24s ease,box-shadow .24s ease,border-color .24s ease;
+      cursor:pointer;
+    }
+    .test-card:hover{
+      transform:translateY(-3px);
+      box-shadow:0 20px 50px rgba(84,52,189,.11);
+      border-color:#d9cdfd;
+    }
+    .test-card .icon{
+      width:52px;
+      height:52px;
+      border-radius:18px;
+      display:grid;
+      place-items:center;
+      font-size:1.42rem;
+      background:var(--primary-soft);
+      color:var(--primary-dark);
+      margin-bottom:16px;
+    }
+    .test-card h3{
+      margin:0 0 8px;
+      letter-spacing:-.02em;
+      font-size:1.17rem;
+    }
+    .test-card p{
+      margin:0 0 18px;
+      color:var(--muted);
+      line-height:1.65;
+      min-height:78px;
+    }
+    .card-footer{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      color:var(--muted);
+      font-size:.9rem;
+    }
+    .card-footer strong{
+      color:var(--primary-dark);
+    }
+
+    .screen{
+      display:none;
+      padding-bottom:40px;
+    }
+    .screen.active{
+      display:block;
+    }
+
+    .intro-card,.quiz-shell,.email-card,.results-card,.info-card{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:34px;
+      box-shadow:var(--shadow);
+    }
+
+    .intro-card{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:24px;
+      padding:28px;
+      margin-top:26px;
+    }
+    .intro-copy h2{
+      font-size:clamp(1.8rem,3.5vw,2.8rem);
+      margin:0 0 12px;
+      letter-spacing:-.04em;
+    }
+    .intro-copy p{
+      margin:0 0 18px;
+      color:var(--muted);
+      line-height:1.75;
+    }
+    .intro-stats{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:12px;
+      margin:20px 0;
+    }
+    .stat{
+      border:1px solid var(--border);
+      background:var(--bg-soft);
+      border-radius:22px;
+      padding:16px;
+    }
+    .stat small{
+      display:block;
+      color:var(--muted);
+      margin-bottom:6px;
+    }
+    .stat strong{
+      font-size:1.14rem;
+    }
+    .note{
+      font-size:.93rem;
+      color:var(--muted);
+      line-height:1.65;
+      padding:15px 17px;
+      border-radius:18px;
+      background:var(--bg-soft);
+      border:1px dashed #ddd1ff;
+      margin-bottom:20px;
+    }
+
+    .btn-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      margin-top:8px;
+    }
+    .btn{
+      appearance:none;
+      border:none;
+      outline:none;
+      cursor:pointer;
+      min-height:52px;
+      padding:0 22px;
+      border-radius:18px;
+      font-weight:700;
+      transition:all .2s ease;
+    }
+    .btn-primary{
+      background:linear-gradient(135deg,var(--primary),#9b83ff);
+      color:#fff;
+      box-shadow:0 12px 30px rgba(123,92,255,.22);
+    }
+    .btn-primary:hover{
+      transform:translateY(-1px);
+      box-shadow:0 16px 34px rgba(123,92,255,.26);
+    }
+    .btn-ghost{
+      background:#fff;
+      border:1px solid var(--border);
+      color:var(--text);
+    }
+    .btn-ghost:hover{
+      border-color:#d9cdfd;
+      transform:translateY(-1px);
+    }
+
+    .art-wrap{
+      border:1px solid var(--border);
+      background:linear-gradient(180deg,#fbfaff 0%,#f7f4ff 100%);
+      border-radius:28px;
+      padding:18px;
+      display:grid;
+      place-items:center;
+      min-height:360px;
+    }
+    .art-wrap svg{
+      width:min(100%,370px);
+      height:auto;
+    }
+
+    .quiz-shell{
+      padding:28px;
+      margin-top:24px;
+    }
+    .quiz-top{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:14px;
+      margin-bottom:20px;
+      flex-wrap:wrap;
+    }
+    .quiz-title-wrap h2{
+      margin:0 0 5px;
+      font-size:clamp(1.5rem,3vw,2.25rem);
+      letter-spacing:-.03em;
+    }
+    .quiz-title-wrap p{
+      margin:0;
+      color:var(--muted);
+    }
+    .progress-box{
+      min-width:220px;
+    }
+    .progress-head{
+      display:flex;
+      justify-content:space-between;
+      font-size:.92rem;
+      color:var(--muted);
+      margin-bottom:8px;
+      gap:10px;
+    }
+    .progress-track{
+      height:10px;
+      background:#f1ecff;
+      border-radius:999px;
+      overflow:hidden;
+      position:relative;
+    }
+    .progress-bar{
+      height:100%;
+      width:0%;
+      border-radius:999px;
+      background:linear-gradient(90deg,var(--primary),#b095ff);
+      transition:width .35s ease;
+    }
+
+    .quiz-grid{
+      display:grid;
+      grid-template-columns:.92fr 1.08fr;
+      gap:26px;
+      align-items:start;
+    }
+    .question-card{
+      border:1px solid var(--border);
+      border-radius:28px;
+      padding:22px;
+      background:#fff;
+    }
+    .question-card .q-tag{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 13px;
+      background:var(--primary-soft);
+      border:1px solid #e3dbff;
+      color:var(--primary-dark);
+      border-radius:999px;
+      font-size:.88rem;
+      font-weight:700;
+      margin-bottom:18px;
+    }
+    .question-card h3{
+      font-size:clamp(1.35rem,2.8vw,2rem);
+      line-height:1.32;
+      margin:0 0 20px;
+      letter-spacing:-.03em;
+    }
+    .options{
+      display:grid;
+      gap:12px;
+    }
+    .option-btn{
+      width:100%;
+      text-align:left;
+      border:1px solid var(--border);
+      background:#fff;
+      border-radius:20px;
+      padding:16px 18px;
+      cursor:pointer;
+      transition:all .18s ease;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:14px;
+      line-height:1.5;
+      font-weight:600;
+      color:var(--text);
+    }
+    .option-btn:hover{
+      border-color:#d5c8fd;
+      background:#fcfbff;
+      transform:translateY(-1px);
+    }
+    .option-btn.active{
+      border-color:var(--primary);
+      background:var(--primary-soft);
+      color:var(--primary-dark);
+      box-shadow:0 8px 24px rgba(123,92,255,.08);
+    }
+    .option-dot{
+      width:18px;
+      height:18px;
+      border-radius:50%;
+      border:2px solid #d0c1ff;
+      flex:0 0 auto;
+      position:relative;
+      background:#fff;
+    }
+    .option-btn.active .option-dot{
+      border-color:var(--primary);
+      background:radial-gradient(circle at center,var(--primary) 45%,#fff 46%);
+    }
+
+    .quiz-nav{
+      margin-top:18px;
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+
+    .email-card,.results-card{
+      padding:30px;
+      margin-top:26px;
+    }
+    .email-card{
+      max-width:900px;
+      margin-inline:auto;
+    }
+    .email-card h2,.results-card h2{
+      margin:0 0 10px;
+      font-size:clamp(1.8rem,3vw,2.4rem);
+      letter-spacing:-.03em;
+    }
+    .email-card p,.results-card p{
+      color:var(--muted);
+      line-height:1.75;
+    }
+    .field{
+      margin-top:18px;
+    }
+    .field label{
+      display:block;
+      margin-bottom:8px;
+      font-weight:700;
+      font-size:.95rem;
+    }
+    .field input{
+      width:100%;
+      min-height:58px;
+      border-radius:20px;
+      border:1px solid var(--border);
+      padding:0 18px;
+      outline:none;
+      background:#fff;
+      color:var(--text);
+    }
+    .field input:focus{
+      border-color:#cbbcff;
+      box-shadow:0 0 0 5px rgba(123,92,255,.08);
+    }
+    .checks{
+      margin:18px 0 10px;
+      display:grid;
+      gap:14px;
+    }
+    .check{
+      display:flex;
+      gap:12px;
+      align-items:flex-start;
+      color:var(--muted);
+      line-height:1.65;
+      font-size:.95rem;
+    }
+    .check input{
+      margin-top:3px;
+      width:20px;
+      height:20px;
+      accent-color:var(--primary);
+    }
+    .muted-small{
+      font-size:.88rem;
+      color:var(--muted);
+    }
+
+    .result-top{
+      display:grid;
+      grid-template-columns:360px 1fr;
+      gap:24px;
+      align-items:center;
+    }
+    .score-ring-wrap{
+      display:grid;
+      place-items:center;
+      padding:20px;
+      border:1px solid var(--border);
+      border-radius:30px;
+      background:linear-gradient(180deg,#fff 0%,#faf7ff 100%);
+    }
+    .score-ring{
+      --percent:0;
+      width:240px;
+      height:240px;
+      border-radius:50%;
+      background:
+        radial-gradient(closest-side,#fff 77%,transparent 78% 100%),
+        conic-gradient(var(--primary) calc(var(--percent)*1%), #ece6ff 0);
+      display:grid;
+      place-items:center;
+      box-shadow:inset 0 0 0 1px #efe8ff;
+    }
+    .score-inner{
+      text-align:center;
+      width:72%;
+    }
+    .score-inner small{
+      display:block;
+      color:var(--muted);
+      margin-bottom:8px;
+    }
+    .score-inner strong{
+      display:block;
+      font-size:4rem;
+      line-height:1;
+      letter-spacing:-.05em;
+      color:var(--primary-dark);
+    }
+    .score-inner span{
+      display:block;
+      margin-top:10px;
+      font-weight:700;
+      font-size:1.08rem;
+    }
+
+    .result-copy .badge{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:9px 14px;
+      border-radius:999px;
+      background:var(--primary-soft);
+      color:var(--primary-dark);
+      border:1px solid #e2d9ff;
+      font-size:.86rem;
+      font-weight:700;
+      margin-bottom:16px;
+    }
+    .result-copy h3{
+      font-size:clamp(1.7rem,3vw,2.6rem);
+      line-height:1.12;
+      margin:0 0 12px;
+      letter-spacing:-.04em;
+    }
+    .result-copy p{
+      margin:0 0 18px;
+    }
+
+    .summary-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:14px;
+      margin:22px 0;
+    }
+    .summary-card{
+      border:1px solid var(--border);
+      border-radius:22px;
+      padding:16px;
+      background:var(--bg-soft);
+    }
+    .summary-card small{
+      display:block;
+      color:var(--muted);
+      margin-bottom:6px;
+    }
+    .summary-card strong{
+      display:block;
+      font-size:1.18rem;
+    }
+
+    .offer-box{
+      border:1px solid #e7defd;
+      background:linear-gradient(180deg,#fff 0%,#faf7ff 100%);
+      border-radius:26px;
+      padding:22px;
+      margin:22px 0 0;
+    }
+    .offer-box h4{
+      margin:0 0 8px;
+      font-size:1.18rem;
+    }
+    .offer-box p{
+      margin:0 0 16px;
+    }
+    .coupon{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:12px 16px;
+      border-radius:16px;
+      background:var(--primary-soft);
+      color:var(--primary-dark);
+      font-weight:800;
+      letter-spacing:.05em;
+      border:1px dashed #cdbdff;
+      margin-bottom:14px;
+    }
+
+    .help-box{
+      margin-top:24px;
+      border:1px solid #ffd7e0;
+      background:var(--danger-soft);
+      border-radius:26px;
+      padding:22px;
+    }
+    .help-box h4{
+      margin:0 0 10px;
+      color:#c53f63;
+      font-size:1.15rem;
+    }
+    .help-links{
+      display:grid;
+      gap:12px;
+      margin-top:16px;
+    }
+    .help-link{
+      border:1px solid #ffc8d5;
+      background:#fff;
+      color:#cf3f64;
+      text-decoration:none;
+      padding:14px 16px;
+      border-radius:18px;
+      font-weight:700;
+    }
+
+    .info-card{
+      padding:22px;
+      margin-top:18px;
+      color:var(--muted);
+      line-height:1.72;
+      font-size:.95rem;
+    }
+
+    .footer{
+      margin:28px 0 38px;
+      text-align:center;
+      color:var(--muted);
+      font-size:.92rem;
+      line-height:1.8;
+    }
+
+    .hidden{display:none!important}
+
+    @media (max-width: 1080px){
+      .tests-grid{grid-template-columns:repeat(2,1fr)}
+      .hero{grid-template-columns:1fr}
+      .intro-card,.quiz-grid,.result-top{grid-template-columns:1fr}
+    }
+    @media (max-width: 680px){
+      .tests-grid{grid-template-columns:1fr}
+      .summary-grid,.intro-stats{grid-template-columns:1fr}
+      .quiz-shell,.email-card,.results-card,.intro-card{padding:20px}
+      .topbar{padding-top:16px}
+      .hero-copy p{font-size:1rem}
+      .score-ring{width:210px;height:210px}
+      .score-inner strong{font-size:3.25rem}
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-badge">Ψ</div>
+        <div>
+          ΨΥΧΟΛΟΓΟΣ
+          <small>Τεστ Ψυχικής Αυτοαξιολόγησης</small>
+        </div>
+      </div>
+    </header>
+
+    <!-- HOME -->
+    <section id="homeScreen" class="screen active">
+      <div class="hero">
+        <div class="hero-copy">
+          <div class="eyebrow">Minimal • Responsive • Professional</div>
+          <h1>Ανακάλυψε το τεστ που σου ταιριάζει περισσότερο.</h1>
+          <p>
+            Διάλεξε ένα από τα διαθέσιμα τεστ και ανακάλυψε το επίπεδο ψυχολογικής επιβάρυνσης ή ισορροπίας σου μέσα από μία
+            δομημένη αυτοαξιολόγηση. Τα αποτελέσματα εμφανίζονται άμεσα στη σελίδα και μπορούν να σταλούν και στο email σου.
+          </p>
+          <div class="hero-meta">
+            <div class="pill">8 διαφορετικά τεστ</div>
+            <div class="pill">25 ερωτήσεις ανά τεστ</div>
+            <div class="pill">5 λεπτά περίπου</div>
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <div class="hero-card-top">
+            <div>
+              <div class="eyebrow">Quick preview</div>
+              <h3>Καθαρό design, επαγγελματική εμπειρία, mobile first.</h3>
+              <p>
+                Minimal λευκό φόντο, μωβ λεπτομέρειες, ήπιες μεταβάσεις, cartoon-style αναπαραστάσεις και άμεση πλοήγηση.
+              </p>
+            </div>
+            <div class="floating-mini">
+              <strong>25</strong>
+              <span class="muted-small">ερωτήσεις</span>
+            </div>
+          </div>
+          <div class="art-wrap" style="min-height:200px">
+            <svg viewBox="0 0 420 260" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="30" y="25" width="360" height="200" rx="28" fill="#fff"/>
+              <rect x="50" y="45" width="130" height="12" rx="6" fill="#EFE9FF"/>
+              <rect x="50" y="72" width="210" height="14" rx="7" fill="#7B5CFF" fill-opacity=".18"/>
+              <rect x="50" y="98" width="290" height="14" rx="7" fill="#F4F0FF"/>
+              <rect x="50" y="127" width="310" height="14" rx="7" fill="#F4F0FF"/>
+              <rect x="50" y="157" width="145" height="38" rx="18" fill="#F1EDFF" stroke="#DDD1FF"/>
+              <rect x="208" y="157" width="145" height="38" rx="18" fill="#7B5CFF"/>
+              <circle cx="314" cy="176" r="7" fill="#fff"/>
+              <path d="M302 176H324" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-title">
+        <div>
+          <h2>Διάλεξε το τεστ που θέλεις να κάνεις</h2>
+          <p>
+            Κάθε τεστ έχει δική του θεματολογία, δικές του ερωτήσεις και ξεχωριστή ανάλυση αποτελέσματος.
+          </p>
+        </div>
+      </div>
+
+      <div id="testsGrid" class="tests-grid"></div>
+
+      <div class="info-card">
+        <strong>Σημαντική σημείωση:</strong> Τα τεστ έχουν εκπαιδευτικό και ενημερωτικό χαρακτήρα. Δεν αποτελούν ιατρική ή ψυχολογική διάγνωση και δεν υποκαθιστούν επαγγελματική αξιολόγηση.
+      </div>
+    </section>
+
+    <!-- INTRO -->
+    <section id="introScreen" class="screen">
+      <div class="intro-card">
+        <div class="intro-copy">
+          <div class="eyebrow">Επιλογή τεστ</div>
+          <h2 id="introTitle">Τίτλος Τεστ</h2>
+          <p id="introDescription"></p>
+
+          <div class="intro-stats">
+            <div class="stat">
+              <small>Διάρκεια</small>
+              <strong>~5 λεπτά</strong>
+            </div>
+            <div class="stat">
+              <small>Ερωτήσεις</small>
+              <strong id="introQuestionsCount">25</strong>
+            </div>
+            <div class="stat">
+              <small>Τύπος</small>
+              <strong>Αυτοαξιολόγηση</strong>
+            </div>
+            <div class="stat">
+              <small>Μορφή</small>
+              <strong>Άμεσο αποτέλεσμα</strong>
+            </div>
+          </div>
+
+          <div class="note">
+            Τα αποτελέσματα είναι ενδεικτικά και έχουν στόχο την καλύτερη κατανόηση της παρούσας συναισθηματικής, γνωστικής ή σχεσιακής σου κατάστασης.
+          </div>
+
+          <div class="btn-row">
+            <button class="btn btn-primary" id="startQuizBtn">Ξεκίνα το τεστ</button>
+            <button class="btn btn-ghost" id="backHomeBtn">Επιστροφή</button>
+          </div>
+        </div>
+
+        <div class="art-wrap" id="introIllustration"></div>
+      </div>
+    </section>
+
+    <!-- QUIZ -->
+    <section id="quizScreen" class="screen">
+      <div class="quiz-shell">
+        <div class="quiz-top">
+          <div class="quiz-title-wrap">
+            <h2 id="quizTestTitle">Τίτλος Τεστ</h2>
+            <p id="quizMiniDesc">Απάντησε με ειλικρίνεια για να έχεις πιο χρήσιμη εικόνα.</p>
+          </div>
+          <div class="progress-box">
+            <div class="progress-head">
+              <span id="progressLabel">Ερώτηση 1 από 25</span>
+              <span id="progressPercent">4%</span>
+            </div>
+            <div class="progress-track">
+              <div id="progressBar" class="progress-bar"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="quiz-grid">
+          <div class="art-wrap" id="questionIllustration"></div>
+
+          <div class="question-card">
+            <div class="q-tag">
+              <span>•</span>
+              <span id="questionTag">Αυτοαξιολόγηση</span>
+            </div>
+            <h3 id="questionText">Η ερώτηση θα εμφανιστεί εδώ.</h3>
+            <div id="optionsWrap" class="options"></div>
+
+            <div class="quiz-nav">
+              <button class="btn btn-ghost" id="prevQuestionBtn">Προηγούμενη</button>
+              <button class="btn btn-primary" id="nextQuestionBtn">Επόμενη</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EMAIL -->
+    <section id="emailScreen" class="screen">
+      <div class="email-card">
+        <div class="eyebrow">Το αποτέλεσμα είναι έτοιμο</div>
+        <h2>Συμπλήρωσε το email σου για να δεις το αποτέλεσμα και να το λάβεις και στο inbox σου.</h2>
+        <p>
+          Το αποτέλεσμα θα εμφανιστεί άμεσα και στη σελίδα. Αν ενεργοποιήσεις αργότερα την αποστολή email, θα το λαμβάνει και αυτόματα ο χρήστης.
+        </p>
+
+        <div class="field">
+          <label for="userEmail">Το email σου</label>
+          <input type="email" id="userEmail" placeholder="π.χ. example@gmail.com" />
+        </div>
+
+        <div class="checks">
+          <label class="check">
+            <input type="checkbox" id="consentResults" checked />
+            <span>Συναινώ στην αποστολή των αποτελεσμάτων μου στο email μου.</span>
+          </label>
+
+          <label class="check">
+            <input type="checkbox" id="consentMarketing" />
+            <span>Συναινώ στη χρήση του email μου για ενημερωτικό υλικό και νέο εκπαιδευτικό περιεχόμενο σχετικό με ψυχολογία και ευεξία.</span>
+          </label>
+
+          <label class="check">
+            <input type="checkbox" id="consentPrivacy" />
+            <span>Έχω διαβάσει και αποδέχομαι την πολιτική απορρήτου και τους όρους χρήσης.</span>
+          </label>
+        </div>
+
+        <p class="muted-small">Δεν στέλνουμε spam. Μπορείς να κάνεις διαγραφή οποιαδήποτε στιγμή.</p>
+
+        <div class="btn-row">
+          <button class="btn btn-primary" id="showResultsBtn">Προβολή αποτελεσμάτων</button>
+          <button class="btn btn-ghost" id="backToQuizBtn">Επιστροφή στο τεστ</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- RESULTS -->
+    <section id="resultsScreen" class="screen">
+      <div class="results-card">
+        <div class="result-top">
+          <div class="score-ring-wrap">
+            <div id="scoreRing" class="score-ring" style="--percent: 0;">
+              <div class="score-inner">
+                <small id="scoreCaption">Συνολικό σκορ</small>
+                <strong id="scoreValue">0</strong>
+                <span id="scoreLevel">Χαμηλό</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="result-copy">
+            <div class="badge" id="resultBadge">Αποτέλεσμα τεστ</div>
+            <h3 id="resultHeadline">Το αποτέλεσμα σου είναι έτοιμο.</h3>
+            <p id="resultSummary">
+              Βάσει των απαντήσεών σου, προκύπτει μία ενδεικτική εικόνα της παρούσας κατάστασής σου.
+            </p>
+
+            <div class="summary-grid">
+              <div class="summary-card">
+                <small>Επίπεδο επιβάρυνσης</small>
+                <strong id="resultLoad">—</strong>
+              </div>
+              <div class="summary-card">
+                <small>Επίδραση στην καθημερινότητα</small>
+                <strong id="resultImpact">—</strong>
+              </div>
+              <div class="summary-card">
+                <small>Προτεινόμενη στάση</small>
+                <strong id="resultAction">—</strong>
+              </div>
+            </div>
+
+            <div class="offer-box">
+              <h4>Θέλεις να το δουλέψεις περισσότερο;</h4>
+              <p>
+                Δες το σχετικό ebook και αξιοποίησε τον παρακάτω εκπτωτικό κωδικό.
+              </p>
+              <div class="coupon">QUIZ15</div>
+              <div class="btn-row">
+                <a class="btn btn-primary" id="ebookBtn" href="https://example.com" target="_blank" rel="noopener">Δες το ebook</a>
+                <button class="btn btn-ghost" id="restartBtn">Ξεκίνα από την αρχή</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="highAlertBox" class="help-box hidden">
+          <h4>Αν χρειάζεσαι άμεση βοήθεια:</h4>
+          <p>Αν νιώθεις ότι δυσκολεύεσαι πολύ ή χρειάζεσαι άμεση υποστήριξη, αναζήτησε βοήθεια από επαγγελματία ψυχικής υγείας ή από διαθέσιμες γραμμές υποστήριξης.</p>
+          <div class="help-links">
+            <a class="help-link" href="tel:1018">Γραμμή SOS 1018</a>
+            <a class="help-link" href="tel:116111">Χαμόγελο του Παιδιού 116 111</a>
+            <a class="help-link" href="tel:2103417162">ΕΨΥΠΕ 210-3417162</a>
+          </div>
+        </div>
+
+        <div class="info-card" style="margin-top:24px">
+          <strong>Σημαντικό:</strong> Το τεστ δεν αποτελεί διάγνωση. Είναι εργαλείο αυτο-αναγνώρισης και ενημέρωσης. Για κλινική αξιολόγηση απευθύνσου σε ειδικό. Τα αποτελέσματα είναι ενδεικτικά και δεν υποκαθιστούν επαγγελματική ψυχολογική ή ιατρική αξιολόγηση.
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      ΨΥΧΟΛΟΓΟΣ • Τεστ Ψυχικής Αυτοαξιολόγησης<br />
+      Όροι Χρήσης • Πολιτική Απορρήτου • GDPR & Δικαιώματα
+    </footer>
+  </div>
+
+  <script>
+    const SHOPIFY_URL = "https://example.com"; 
+    const BRAND_NAME = "ΨΥΧΟΛΟΓΟΣ";
+
+    // Αν αργότερα βάλεις EmailJS, συμπλήρωσε αυτά:
+    const EMAILJS_PUBLIC_KEY = "";
+    const EMAILJS_SERVICE_ID = "";
+    const EMAILJS_TEMPLATE_ID = "";
+
+    const scales = {
+      frequency: ["Καθόλου", "Λίγο", "Μερικές φορές", "Συχνά", "Πάρα πολύ"],
+      agreement: ["Διαφωνώ απόλυτα", "Διαφωνώ", "Ούτε/ούτε", "Συμφωνώ", "Συμφωνώ απόλυτα"],
+      satisfaction: ["Καθόλου", "Λίγο", "Μέτρια", "Αρκετά", "Πολύ"],
+      impact: ["Καθόλου", "Λίγο", "Μέτρια", "Αρκετά", "Πολύ έντονα"]
+    };
+
+    const q = (text, scale = "frequency") => ({ text, scale, reverse: false });
+    const qr = (text, scale = "frequency") => ({ text, scale, reverse: true });
+
+    const illustrations = {
+      anxiety: `
+        <svg viewBox="0 0 420 340" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="25" y="18" width="370" height="300" rx="30" fill="#F7F4FF"/>
+          <circle cx="207" cy="110" r="44" fill="#fff" stroke="#1E1930" stroke-width="3"/>
+          <path d="M180 101C186 92 195 88 206 88C219 88 227 94 233 104" stroke="#1E1930" stroke-width="3" stroke-linecap="round"/>
+          <path d="M188 130C200 120 215 121 226 131" stroke="#1E1930" stroke-width="3" stroke-linecap="round"/>
+          <path d="M160 170L143 242" stroke="#1E1930" stroke-width="4" stroke-linecap="round"/>
+          <path d="M254 170L274 242" stroke="#1E1930" stroke-width="4" stroke-linecap="round"/>
+          <rect x="160" y="162" width="95" height="92" rx="34" fill="#9F87FF"/>
+          <path d="M117 154L97 138" stroke="#1E1930" stroke-width="4" stroke-linecap="round"/>
+          <path d="M295 154L315 138" stroke="#1E1930" stroke-width="4" stroke-linecap="round"/>
+          <path d="M85 112L68 103" stroke="#1E1930" stroke-width="4" stroke-linecap="round"/>
+          <path d="M333 112L350 103" stroke="#1E1930" stroke-width="4" stroke-linecap="round"/>
+          <path d="M91 75L79 59" stroke="#1E1930" stroke-width="4" stroke-linecap="round"/>
+          <path d="M320 75L334 59" stroke="#1E1930" stroke-width="4" stroke-linecap="round"/>
+          <path d="M306 36C320 27 339 34 344 50C347 62 342 71 332 82" stroke="#1E1930" stroke-width="4" stroke-linecap="round"/>
+          <path d="M71 46L82 60L67 70" stroke="#1E1930" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      `,
+      stress: `
+        <svg viewBox="0 0 420 340" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="26" y="18" width="368" height="300" rx="30" fill="#F7F4FF"/>
+          <rect x="68" y="195" width="110" height="75" rx="16" fill="#fff" stroke="#1E1930" stroke-width="3"/>
+          <rect x="78" y="205" width="90" height="45" rx="10" fill="#EBE4FF"/>
+          <circle cx="259" cy="97" r="42" fill="#fff" stroke="#1E1930" stroke-width="3"/>
+          <path d="M241 96C248 88 254 85 262 85C271 85 278 89 281 95" stroke="#1E1930" stroke-width="3" stroke-linecap="round"/>
+          <path d="M241 126C249 116 269 116 277 126" stroke="#1E1930" stroke-width="3" stroke-linecap="round"/>
+          <rect x="215" y="139" width="88" height="96" rx="32" fill="#9F87FF"/>
+          <path d="M215 162L189 214" stroke="#1E1930" stroke-width="4" stroke-linecap="round"/>
+          <path d="M303 161L323 214" stroke="#1E1930" stroke-width="4" stroke-linecap="round"/>
+          <path d="M332 196L357 190" stroke="#1E1930" stroke-width="4" stroke-linecap="round"/>
+          <path d="M181 200L158 193" stroke="#1E1930" stroke-width="4" stroke-linecap="round"/>
+          <path d="M350 156L365 147" stroke="#1E1930" stroke-width="4" stroke-linecap="round"/>
+          <path d="M166 158L152 147" stroke="#1E1930" stroke-width="4" stroke-linecap="round"/>
+          <path d="M336 96L352 85" stroke="#1E1930" stroke-width="4" stroke-linecap="round"/>
+          <path d="M180 95L167 83" stroke="#1E1930" stroke-width="4" stroke-linecap="round"/>
+        </svg>
+      `,
+      selfEsteem: `
+        <svg viewBox="0 0 420 340" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="25" y="18" width="370" height="300" rx="30" fill="#F7F4FF"/>
+          <circle cx="208" cy="100" r="43" fill="#fff" stroke="#1E1930" stroke-width="3"/>
+          <path d="M189 99C195 93 200 90 208 90C216 90 221 93 227 99" stroke="#1E1930" stroke-width="3" stroke-linecap="round"/>
+          <path d="M190 123C198 132 218 132 226 123" stroke="#1E1930" stroke-width="3" stroke-linecap="round"/>
+          <rect x="166" y="144" width="84" height="100" rx="30" fill="#9F87FF"/>
+          <path d="M166 168L136 219" stroke="#1E1930" stroke-width="4" stroke-linecap="round"/>
+          <path d="M252 168L282 219" stroke="#1E1930" stroke-width="4" stroke-linecap="round"/>
+          <path d="M208 151V44" stroke="#1E1930" stroke-width="4" stroke-linecap="round"/>
+          <path d="M233 57L208 34L183 57" stroke="#1E1930" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M312 91L327 102L346 92" stroke="#1E1930" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M76 88L93 97L109 88" stroke="#1E1930" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      `,
+      depression: `
+        <svg viewBox="0 0 420 340" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="26" y="18" width="368" height="300" rx="30" fill="#F7F4FF"/>
+          <path d="M90 85C111 53 154 42 190 52C147 76 128 121 127 158" fill="#EAE4FF"/>
+          <circle cx="217" cy="115" r="44" fill="#fff" stroke="#1E1930" stroke-width="3"/>
+          <path d="M196 110C202 104 209 102 217 102C225 102 232 104 238 110" stroke="#1E1930" stroke-width="3" stroke-linecap="round"/>
+          <path d="M198 136C206 130 228 130 236 136" stroke="#1E1930" stroke-width="3" stroke-linecap="round"/>
+          <rect x="173" y="159" width="88" height="97" rx="32" fill="#9F87FF"/>
+          <path d="M174 181L144 230" stroke="#1E1930" stroke-width="4" stroke-linecap="round"/>
+          <path d="M261 181L288 230" stroke="#1E1930" stroke-width="4" stroke-linecap="round"/>
+          <path d="M297 67C319 67 334 85 334 106" stroke="#1E1930" stroke-width="4" stroke-linecap="round"/>
+        </svg>
+      `,
+      relationships: `
+        <svg viewBox="0 0 420 340" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="26" y="18" width="368" height="300" rx="30" fill="#F7F4FF"/>
+          <circle cx="151" cy="107" r="35" fill="#fff" stroke="#1E1930" stroke-width="3"/>
+          <circle cx="267" cy="107" r="35" fill="#fff" stroke="#1E1930" stroke-width="3"/>
+          <rect x="118" y="145" width="66" height="88" rx="26" fill="#B69FFF"/>
+          <rect x="236" y="145" width="66" height="88" rx="26" fill="#8D70FF"/>
+          <path d="M181 177H236" stroke="#1E1930" stroke-width="4" stroke-linecap="round"/>
+          <path d="M105 175L80 217" stroke="#1E1930" stroke-width="4" stroke-linecap="round"/>
+          <path d="M315 175L340 217" stroke="#1E1930" stroke-width="4" stroke-linecap="round"/>
+          <path d="M205 78C216 66 233 66 245 78C251 84 254 91 254 99C254 117 235 129 210 149C184 129 166 117 166 99C166 83 177 70 193 70C198 70 202 72 205 78Z" fill="#fff" stroke="#1E1930" stroke-width="3" stroke-linejoin="round"/>
+        </svg>
+      `,
+      sexuality: `
+        <svg viewBox="0 0 420 340" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="26" y="18" width="368" height="300" rx="30" fill="#F7F4FF"/>
+          <circle cx="145" cy="109" r="34" fill="#fff" stroke="#1E1930" stroke-width="3"/>
+          <circle cx="274" cy="109" r="34" fill="#fff" stroke="#1E1930" stroke-width="3"/>
+          <rect x="115" y="145" width="60" height="84" rx="24" fill="#C4B3FF"/>
+          <rect x="244" y="145" width="60" height="84" rx="24" fill="#8D70FF"/>
+          <path d="M178 196C195 177 224 177 241 196" stroke="#1E1930" stroke-width="4" stroke-linecap="round"/>
+          <path d="M160 82C165 77 172 75 179 75C191 75 201 84 201 96" stroke="#1E1930" stroke-width="3" stroke-linecap="round"/>
+          <path d="M259 82C264 77 271 75 278 75C290 75 300 84 300 96" stroke="#1E1930" stroke-width="3" stroke-linecap="round"/>
+          <circle cx="209" cy="98" r="18" fill="#fff" stroke="#1E1930" stroke-width="3"/>
+          <path d="M209 63V45" stroke="#1E1930" stroke-width="4" stroke-linecap="round"/>
+          <path d="M199 53H219" stroke="#1E1930" stroke-width="4" stroke-linecap="round"/>
+        </svg>
+      `,
+      adhd: `
+        <svg viewBox="0 0 420 340" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="26" y="18" width="368" height="300" rx="30" fill="#F7F4FF"/>
+          <circle cx="210" cy="106" r="43" fill="#fff" stroke="#1E1930" stroke-width="3"/>
+          <path d="M191 102C198 94 206 91 214 91C224 91 231 96 236 103" stroke="#1E1930" stroke-width="3" stroke-linecap="round"/>
+          <path d="M191 131C201 120 221 120 231 131" stroke="#1E1930" stroke-width="3" stroke-linecap="round"/>
+          <rect x="168" y="148" width="86" height="95" rx="31" fill="#9F87FF"/>
+          <path d="M168 170L138 222" stroke="#1E1930" stroke-width="4" stroke-linecap="round"/>
+          <path d="M254 170L282 222" stroke="#1E1930" stroke-width="4" stroke-linecap="round"/>
+          <path d="M81 104L101 92" stroke="#1E1930" stroke-width="4" stroke-linecap="round"/>
+          <path d="M330 104L350 92" stroke="#1E1930" stroke-width="4" stroke-linecap="round"/>
+          <path d="M95 64L111 77" stroke="#1E1930" stroke-width="4" stroke-linecap="round"/>
+          <path d="M317 64L302 78" stroke="#1E1930" stroke-width="4" stroke-linecap="round"/>
+          <path d="M63 148H85" stroke="#1E1930" stroke-width="4" stroke-linecap="round"/>
+          <path d="M335 148H357" stroke="#1E1930" stroke-width="4" stroke-linecap="round"/>
+        </svg>
+      `,
+      breakup: `
+        <svg viewBox="0 0 420 340" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="26" y="18" width="368" height="300" rx="30" fill="#F7F4FF"/>
+          <path d="M211 94C221 74 244 68 262 76C274 81 283 92 283 106C283 127 261 140 233 165L211 181L188 165C160 140 139 127 139 106C139 83 156 70 178 70C191 70 203 77 211 94Z" fill="#fff" stroke="#1E1930" stroke-width="3"/>
+          <path d="M252 90L170 174" stroke="#1E1930" stroke-width="5" stroke-linecap="round"/>
+          <circle cx="140" cy="221" r="28" fill="#fff" stroke="#1E1930" stroke-width="3"/>
+          <circle cx="278" cy="221" r="28" fill="#fff" stroke="#1E1930" stroke-width="3"/>
+          <path d="M117 251L94 288" stroke="#1E1930" stroke-width="4" stroke-linecap="round"/>
+          <path d="M301 251L324 288" stroke="#1E1930" stroke-width="4" stroke-linecap="round"/>
+          <path d="M130 215C136 211 141 210 146 210C153 210 159 213 162 217" stroke="#1E1930" stroke-width="3" stroke-linecap="round"/>
+          <path d="M267 225C275 232 285 232 293 225" stroke="#1E1930" stroke-width="3" stroke-linecap="round"/>
+        </svg>
+      `
+    };
+
+    const TESTS = {
+      anxiety: {
+        icon: "🫀",
+        title: "Τεστ Άγχους",
+        short: "Άγχος",
+        illustration: "anxiety",
+        description: "Ενδεικτική αυτοαξιολόγηση για τη συχνότητα, την ένταση και την επίδραση του άγχους στην καθημερινότητά σου.",
+        questions: [
+          q("Πόσο συχνά δυσκολεύεσαι να χαλαρώσεις μέσα στην ημέρα;"),
+          q("Πόσο συχνά νιώθεις εσωτερική ένταση χωρίς σαφή λόγο;"),
+          q("Πόσο συχνά ανησυχείς ότι κάτι αρνητικό πρόκειται να συμβεί;"),
+          q("Πόσο συχνά οι σκέψεις σου τρέχουν και δεν σε αφήνουν να ηρεμήσεις;"),
+          q("Πόσο συχνά νιώθεις σφίξιμο στο σώμα ή στο στομάχι;"),
+          q("Πόσο συχνά το άγχος επηρεάζει τον ύπνο σου;"),
+          q("Πόσο συχνά νιώθεις ότι χρειάζεσαι απόλυτο έλεγχο για να νιώσεις ασφαλής;"),
+          q("Πόσο συχνά δυσκολεύεσαι να συγκεντρωθείς επειδή αγχώνεσαι;"),
+          q("Πόσο συχνά αποφεύγεις καταστάσεις από φόβο μήπως πιεστείς;"),
+          q("Πόσο συχνά ζητάς διαβεβαίωση από άλλους για να ηρεμήσεις;"),
+          q("Πόσο συχνά νιώθεις ταχυκαρδία ή νευρικότητα;"),
+          q("Πόσο συχνά σκέφτεσαι ξανά και ξανά ένα πρόβλημα;"),
+          q("Πόσο συχνά σε εξαντλεί η αβεβαιότητα;"),
+          q("Πόσο συχνά φοβάσαι την κριτική ή την απόρριψη;"),
+          q("Πόσο συχνά νιώθεις κόμπο στον λαιμό ή βάρος στο στήθος;"),
+          q("Πόσο συχνά δυσκολεύεσαι να απολαύσεις τη στιγμή λόγω ανησυχίας;"),
+          q("Πόσο συχνά γίνεσαι ευερέθιστος/η επειδή είσαι σε ένταση;"),
+          q("Πόσο συχνά το άγχος επηρεάζει αποφάσεις που πρέπει να πάρεις;"),
+          q("Πόσο συχνά αισθάνεσαι ότι δεν μπορείς να σταματήσεις να ανησυχείς;"),
+          q("Πόσο συχνά δυσκολεύεσαι να πεις “όχι” από φόβο ή πίεση;"),
+          q("Πόσο συχνά νιώθεις ψυχραιμία ακόμη και σε αβέβαιες καταστάσεις;", "agreement"),
+          qr("Πόσο συχνά νιώθεις ψυχραιμία ακόμη και σε αβέβαιες καταστάσεις;", "agreement"),
+          qr("Νιώθεις ότι έχεις αποτελεσματικούς τρόπους αποφόρτισης;", "agreement"),
+          qr("Μπορείς να αναγνωρίσεις έγκαιρα πότε πιέζεσαι και να φροντίσεις τον εαυτό σου;", "agreement"),
+          q("Συνολικά, πόσο θεωρείς ότι το άγχος επηρεάζει την καθημερινότητά σου;", "impact")
+        ]
+      },
+
+      stress: {
+        icon: "⚡",
+        title: "Τεστ Στρες",
+        short: "Στρες",
+        illustration: "stress",
+        description: "Αυτοαξιολόγηση για το επίπεδο πίεσης που βιώνεις στην καθημερινότητα, στις υποχρεώσεις και στο σώμα σου.",
+        questions: [
+          q("Πόσο συχνά νιώθεις ότι έχεις υπερβολικά πολλές υποχρεώσεις;"),
+          q("Πόσο συχνά αισθάνεσαι πίεση χρόνου;"),
+          q("Πόσο συχνά τελειώνει η μέρα και νιώθεις εξάντληση;"),
+          q("Πόσο συχνά κουβαλάς την πίεση στο σώμα σου;"),
+          q("Πόσο συχνά έχεις την αίσθηση ότι “τρέχεις” συνεχώς;"),
+          q("Πόσο συχνά το στρες επηρεάζει τη διάθεσή σου;"),
+          q("Πόσο συχνά αισθάνεσαι ότι δεν προλαβαίνεις να κάνεις παύση;"),
+          q("Πόσο συχνά δυσκολεύεσαι να αποσυνδεθείς από υποχρεώσεις;"),
+          q("Πόσο συχνά γίνεσαι πιο απότομος/η λόγω πίεσης;"),
+          q("Πόσο συχνά νιώθεις ότι “γεμίζεις” πολύ εύκολα;"),
+          q("Πόσο συχνά επηρεάζεται ο ύπνος σου από την πίεση;"),
+          q("Πόσο συχνά το στρες επηρεάζει τη συγκέντρωσή σου;"),
+          q("Πόσο συχνά νιώθεις πονοκέφαλο ή σωματική κόπωση λόγω πίεσης;"),
+          q("Πόσο συχνά αναβάλλεις πράγματα επειδή νιώθεις υπερφόρτωση;"),
+          q("Πόσο συχνά νιώθεις ότι δεν έχεις καθόλου χρόνο για εσένα;"),
+          q("Πόσο συχνά σκέφτεσαι ότι δεν αντέχεις άλλες απαιτήσεις;"),
+          q("Πόσο συχνά χάνεις την υπομονή σου;"),
+          q("Πόσο συχνά η καθημερινότητα σε απορροφά πλήρως;"),
+          q("Πόσο συχνά πιέζεσαι να αποδίδεις διαρκώς;"),
+          q("Πόσο συχνά νιώθεις πως ακόμη και μικρά θέματα σε βαραίνουν;"),
+          qr("Έχεις αρκετά διαστήματα ξεκούρασης μέσα στην εβδομάδα;", "agreement"),
+          qr("Νιώθεις ότι κρατάς σχετικά καλή ισορροπία ανάμεσα σε υποχρεώσεις και προσωπικό χρόνο;", "agreement"),
+          qr("Μπορείς να βάζεις όρια όταν πιέζεσαι πολύ;", "agreement"),
+          qr("Αισθάνεσαι ότι ανακάμπτεις σχετικά γρήγορα μετά από έντονες μέρες;", "agreement"),
+          q("Συνολικά, πόσο θεωρείς ότι το στρες επηρεάζει την ποιότητα ζωής σου;", "impact")
+        ]
+      },
+
+      selfEsteem: {
+        icon: "✨",
+        title: "Τεστ Αυτοεκτίμησης",
+        short: "Αυτοεκτίμηση",
+        illustration: "selfEsteem",
+        description: "Αυτοαξιολόγηση για το πώς βλέπεις τον εαυτό σου, την αξία σου, την αυτοπεποίθησή σου και τη σχέση σου με την κριτική.",
+        questions: [
+          qr("Νιώθεις ότι έχεις προσωπική αξία;", "agreement"),
+          qr("Μπορείς να αναγνωρίσεις τα δυνατά σου σημεία;", "agreement"),
+          q("Πόσο συχνά συγκρίνεις αρνητικά τον εαυτό σου με άλλους;"),
+          q("Πόσο συχνά αισθάνεσαι ότι “δεν είσαι αρκετός/ή”;"),
+          q("Πόσο συχνά η γνώμη των άλλων καθορίζει το πώς νιώθεις για εσένα;"),
+          q("Πόσο συχνά φοβάσαι ότι θα σε απορρίψουν;"),
+          q("Πόσο συχνά υποτιμάς τις ικανότητές σου;"),
+          qr("Νιώθεις άνετα να διεκδικήσεις αυτό που χρειάζεσαι;", "agreement"),
+          q("Πόσο συχνά νιώθεις ενοχές ακόμη και χωρίς σοβαρό λόγο;"),
+          q("Πόσο συχνά δυσκολεύεσαι να αποδεχτείς ένα κομπλιμέντο;"),
+          q("Πόσο συχνά αυτοσαμποτάρεις τον εαυτό σου;"),
+          qr("Πιστεύεις ότι αξίζεις σεβασμό και φροντίδα;", "agreement"),
+          q("Πόσο συχνά φοβάσαι ότι οι άλλοι θα σε κρίνουν;"),
+          q("Πόσο συχνά σκέφτεσαι τα λάθη σου περισσότερο από τα θετικά σου;"),
+          qr("Νιώθεις σχετικά σίγουρος/η στις αποφάσεις σου;", "agreement"),
+          q("Πόσο συχνά αποφεύγεις ευκαιρίες επειδή αμφιβάλλεις για εσένα;"),
+          q("Πόσο συχνά νιώθεις ότι πρέπει να αποδεικνύεις συνεχώς την αξία σου;"),
+          qr("Αποδέχεσαι ότι η τελειότητα δεν είναι απαραίτητη;", "agreement"),
+          q("Πόσο συχνά νιώθεις ντροπή για πτυχές του εαυτού σου;"),
+          q("Πόσο συχνά αφήνεις τον εσωτερικό κριτή να σε καταβάλλει;"),
+          qr("Μπορείς να δεις τον εαυτό σου με κατανόηση όταν κάνεις λάθη;", "agreement"),
+          qr("Νιώθεις ότι έχεις δικαίωμα να βάζεις όρια;", "agreement"),
+          q("Πόσο συχνά νιώθεις ότι δεν είσαι “αρκετά καλός/ή”;"),
+          qr("Αισθάνεσαι ότι αξίζεις να σε αγαπούν όπως είσαι;", "agreement"),
+          q("Συνολικά, πόσο θεωρείς ότι η αυτοεικόνα σου επηρεάζει την καθημερινότητά σου;", "impact")
+        ]
+      },
+
+      depression: {
+        icon: "☁️",
+        title: "Τεστ Διάθεσης / Κατάθλιψης",
+        short: "Διάθεση",
+        illustration: "depression",
+        description: "Ενδεικτική αυτοαξιολόγηση για στοιχεία χαμηλής διάθεσης, απώλειας ενδιαφέροντος και ψυχικής κόπωσης.",
+        questions: [
+          q("Πόσο συχνά νιώθεις πεσμένη διάθεση;"),
+          q("Πόσο συχνά έχεις μειωμένο ενδιαφέρον για πράγματα που παλιότερα σου άρεσαν;"),
+          q("Πόσο συχνά νιώθεις άδειος/α ή χωρίς κίνητρο;"),
+          q("Πόσο συχνά δυσκολεύεσαι να σηκωθείς ή να ξεκινήσεις τη μέρα σου;"),
+          q("Πόσο συχνά νιώθεις ψυχική κόπωση;"),
+          q("Πόσο συχνά νιώθεις ότι τίποτα δεν σε ενθουσιάζει;"),
+          q("Πόσο συχνά νιώθεις μόνος/η ακόμη και με κόσμο γύρω σου;"),
+          q("Πόσο συχνά έχεις τάση να απομονώνεσαι;"),
+          q("Πόσο συχνά αισθάνεσαι ότι έχεις λίγη ενέργεια;"),
+          q("Πόσο συχνά νιώθεις απαισιοδοξία για το μέλλον;"),
+          q("Πόσο συχνά ο ύπνος σου είναι περισσότερο ή λιγότερο από όσο συνήθως;"),
+          q("Πόσο συχνά νιώθεις μειωμένη αυτοεκτίμηση;"),
+          q("Πόσο συχνά νιώθεις ότι δεν απολαμβάνεις όσα κάνεις;"),
+          q("Πόσο συχνά νιώθεις να βαραίνει η καθημερινότητά σου;"),
+          q("Πόσο συχνά δυσκολεύεσαι να συγκεντρωθείς λόγω ψυχικής κούρασης;"),
+          q("Πόσο συχνά νιώθεις ότι όλα σου φαίνονται πιο δύσκολα;"),
+          q("Πόσο συχνά έχεις την αίσθηση ότι δεν έχεις αρκετό συναισθηματικό χώρο;"),
+          q("Πόσο συχνά η χαμηλή διάθεση επηρεάζει σχέσεις ή υποχρεώσεις;"),
+          qr("Υπάρχουν ακόμη στιγμές που μπορείς να χαρείς κάτι μικρό;", "agreement"),
+          qr("Νιώθεις ότι υπάρχουν άνθρωποι στους οποίους μπορείς να απευθυνθείς;", "agreement"),
+          qr("Μπορείς να αναγνωρίσεις μικρές θετικές στιγμές μέσα στην ημέρα;", "agreement"),
+          qr("Νιώθεις ότι έχεις κάποια ελπίδα ή προοπτική μπροστά;", "agreement"),
+          q("Πόσο συχνά δυσκολεύεσαι να φροντίσεις τον εαυτό σου;"),
+          q("Πόσο συχνά νιώθεις ψυχικά εξαντλημένος/η;"),
+          q("Συνολικά, πόσο θεωρείς ότι η διάθεσή σου επηρεάζει την ποιότητα ζωής σου;", "impact")
+        ]
+      },
+
+      relationships: {
+        icon: "💞",
+        title: "Τεστ Σχέσεων & Έρωτα",
+        short: "Σχέσεις",
+        illustration: "relationships",
+        description: "Αυτοαξιολόγηση για το πώς νιώθεις στις σχέσεις, την οικειότητα, την επικοινωνία, τη ζήλια και το συναισθηματικό δέσιμο.",
+        questions: [
+          q("Πόσο συχνά νιώθεις ανασφάλεια στις ερωτικές σου σχέσεις;"),
+          q("Πόσο συχνά φοβάσαι μήπως απορριφθείς ή εγκαταλειφθείς;"),
+          q("Πόσο συχνά ζητάς επιβεβαίωση ότι σε αγαπούν;"),
+          q("Πόσο συχνά δυσκολεύεσαι να εκφράσεις καθαρά τι χρειάζεσαι;"),
+          q("Πόσο συχνά ζηλεύεις ή υπεραναλύεις συμπεριφορές του άλλου;"),
+          q("Πόσο συχνά νιώθεις ότι δίνεις περισσότερα από όσα παίρνεις;"),
+          q("Πόσο συχνά φοβάσαι να δείξεις την αληθινή σου ευαισθησία;"),
+          qr("Νιώθεις ότι μπορείς να επικοινωνήσεις ήρεμα σε μια σχέση;", "agreement"),
+          q("Πόσο συχνά πληγώνεσαι εύκολα από μια μικρή απόσταση ή αλλαγή στάσης;"),
+          q("Πόσο συχνά κρατάς μέσα σου πράγματα για να μη δημιουργηθεί ένταση;"),
+          q("Πόσο συχνά νιώθεις ότι μπλέκεσαι σε επαναλαμβανόμενα μοτίβα σχέσεων;"),
+          q("Πόσο συχνά φοβάσαι τη δέσμευση ή την πολλή εγγύτητα;"),
+          q("Πόσο συχνά δυσκολεύεσαι να βάλεις όρια;"),
+          qr("Νιώθεις ότι οι σχέσεις σου μπορούν να είναι ασφαλείς και ζεστές;", "agreement"),
+          q("Πόσο συχνά εξαρτάται η διάθεσή σου από τη στάση του/της άλλου/ης;"),
+          q("Πόσο συχνά φοβάσαι ότι δεν είσαι “αρκετός/ή” για μια σχέση;"),
+          q("Πόσο συχνά κουβαλάς στο παρόν εμπειρίες από παλιότερες σχέσεις;"),
+          qr("Νιώθεις ότι μπορείς να κρατήσεις την προσωπική σου ισορροπία μέσα σε μια σχέση;", "agreement"),
+          q("Πόσο συχνά αποφεύγεις συζητήσεις για σημαντικά συναισθηματικά θέματα;"),
+          q("Πόσο συχνά νιώθεις ότι μπερδεύεσαι για το τι θέλεις πραγματικά σε έναν/μία σύντροφο;"),
+          qr("Αισθάνεσαι ότι σου αξίζει μια καλή και υγιής σχέση;", "agreement"),
+          q("Πόσο συχνά δυσκολεύεσαι να εμπιστευτείς;"),
+          q("Πόσο συχνά η συναισθηματική σου ζωή επηρεάζει άλλους τομείς της καθημερινότητας;"),
+          qr("Μπορείς να είσαι ο εαυτός σου μέσα σε μια σχέση;", "agreement"),
+          q("Συνολικά, πόσο θεωρείς ότι ο σχεσιακός/ερωτικός τομέας σε επιβαρύνει αυτή την περίοδο;", "impact")
+        ]
+      },
+
+      sexuality: {
+        icon: "❤️",
+        title: "Τεστ Σεξουαλικής Ζωής & Απόδοσης",
+        short: "Σεξουαλική ζωή",
+        illustration: "sexuality",
+        description: "Ενδεικτική αυτοαξιολόγηση για τη σεξουαλική ικανοποίηση, την οικειότητα, το άγχος απόδοσης και τη συναισθηματική άνεση.",
+        questions: [
+          q("Πόσο ικανοποιημένος/η νιώθεις από τη σεξουαλική σου ζωή αυτή την περίοδο;", "satisfaction"),
+          q("Πόσο συχνά νιώθεις άγχος απόδοσης στη σεξουαλική επαφή;"),
+          q("Πόσο συχνά δυσκολεύεσαι να χαλαρώσεις σε ερωτικές στιγμές;"),
+          q("Πόσο συχνά νιώθεις ανασφάλεια για το σώμα σου κατά τη διάρκεια της οικειότητας;"),
+          q("Πόσο συχνά νιώθεις ότι δεν εκφράζεις τι σε ικανοποιεί;"),
+          q("Πόσο συχνά το μυαλό σου “τρέχει” αντί να είσαι παρών/ούσα στη στιγμή;"),
+          q("Πόσο συχνά αισθάνεσαι πίεση να αποδώσεις;"),
+          q("Πόσο συχνά αποφεύγεις τη σεξουαλική επαφή λόγω άγχους ή αμηχανίας;"),
+          q("Πόσο συχνά νιώθεις ότι η σύνδεση με τον/τη σύντροφο λείπει από την οικειότητα;"),
+          q("Πόσο συχνά δυσκολεύεσαι να μιλήσεις ανοιχτά για τις επιθυμίες σου;"),
+          q("Πόσο συχνά αισθάνεσαι ντροπή ή αμηχανία γύρω από τη σεξουαλικότητά σου;"),
+          q("Πόσο συχνά νιώθεις ότι δεν σε ικανοποιεί η ποιότητα των ερωτικών σου εμπειριών;", "satisfaction"),
+          q("Πόσο συχνά επηρεάζεται η επιθυμία σου από ψυχολογική πίεση;"),
+          q("Πόσο συχνά υπάρχουν σκέψεις αυτοκριτικής κατά τη διάρκεια της επαφής;"),
+          q("Πόσο συχνά νιώθεις συναισθηματική απόσταση στον ερωτικό τομέα;"),
+          qr("Νιώθεις ότι μπορείς να είσαι άνετα ο εαυτός σου στην οικειότητα;", "agreement"),
+          qr("Μπορείς να μιλήσεις με ειλικρίνεια για όσα νιώθεις ή χρειάζεσαι;", "agreement"),
+          qr("Υπάρχει αμοιβαίος σεβασμός και άνεση στον σεξουαλικό τομέα;", "agreement"),
+          q("Πόσο συχνά η σεξουαλική σου ζωή επηρεάζει την αυτοεκτίμησή σου;"),
+          q("Πόσο συχνά νιώθεις απογοήτευση σχετικά με τη σεξουαλική σου ζωή;"),
+          q("Πόσο συχνά παρατηρείς ένταση ή φόβο γύρω από τη σεξουαλική επαφή;"),
+          q("Πόσο συχνά αισθάνεσαι ότι υπάρχει ασυμφωνία επιθυμίας ή ρυθμού;"),
+          qr("Νιώθεις σε επαφή με τις πραγματικές σου ανάγκες και επιθυμίες;", "agreement"),
+          q("Πόσο συχνά σε επηρεάζουν οι προσδοκίες ή η πίεση του “να είσαι τέλειος/α”;"),
+          q("Συνολικά, πόσο θεωρείς ότι ο σεξουαλικός τομέας επηρεάζει την ευεξία σου;", "impact")
+        ]
+      },
+
+      adhd: {
+        icon: "🧠",
+        title: "Τεστ Συγκέντρωσης / ΔΕΠΥ",
+        short: "ΔΕΠΥ / Συγκέντρωση",
+        illustration: "adhd",
+        description: "Ενδεικτική αυτοαξιολόγηση για στοιχεία προσοχής, οργάνωσης, παρορμητικότητας και δυσκολίας διατήρησης συγκέντρωσης.",
+        questions: [
+          q("Πόσο συχνά δυσκολεύεσαι να συγκεντρωθείς για αρκετή ώρα;"),
+          q("Πόσο συχνά χάνεις εύκολα την προσοχή σου;"),
+          q("Πόσο συχνά αφήνεις πράγματα στη μέση;"),
+          q("Πόσο συχνά ξεχνάς υποχρεώσεις ή λεπτομέρειες;"),
+          q("Πόσο συχνά αναβάλλεις εργασίες που χρειάζονται οργάνωση;"),
+          q("Πόσο συχνά το μυαλό σου “πηδάει” από σκέψη σε σκέψη;"),
+          q("Πόσο συχνά δυσκολεύεσαι να βάλεις προτεραιότητες;"),
+          q("Πόσο συχνά νιώθεις εσωτερική ανησυχία ή υπερκινητικότητα;"),
+          q("Πόσο συχνά διακόπτεις άλλους ή μιλάς παρορμητικά;"),
+          q("Πόσο συχνά χάνεις αντικείμενα ή ξεχνάς πού τα έβαλες;"),
+          q("Πόσο συχνά ξεκινάς με ενθουσιασμό αλλά κουράζεσαι γρήγορα;"),
+          q("Πόσο συχνά δυσκολεύεσαι να ολοκληρώσεις μια εργασία εγκαίρως;"),
+          q("Πόσο συχνά χρειάζεσαι περισσότερη πίεση για να ξεκινήσεις;"),
+          q("Πόσο συχνά κάνεις μικρά λάθη απροσεξίας;"),
+          q("Πόσο συχνά αισθάνεσαι αποδιοργανωμένος/η;"),
+          q("Πόσο συχνά αποσπάσαι από θορύβους, οθόνες ή ερεθίσματα;"),
+          q("Πόσο συχνά χάνεις το νήμα μιας συζήτησης;"),
+          q("Πόσο συχνά νιώθεις πως το μυαλό σου δεν “κάθεται”;"),
+          q("Πόσο συχνά αλλάζεις δραστηριότητα πριν ολοκληρώσεις την προηγούμενη;"),
+          q("Πόσο συχνά δυσκολεύεσαι να παραμείνεις σε ρουτίνα;"),
+          qr("Μπορείς να οργανώσεις ικανοποιητικά μια απαιτητική μέρα;", "agreement"),
+          qr("Νιώθεις ότι μπορείς να διαχειρίζεσαι σχετικά καλά τις εκκρεμότητές σου;", "agreement"),
+          qr("Όταν χρειάζεται, μπορείς να παραμείνεις συγκεντρωμένος/η;", "agreement"),
+          q("Πόσο συχνά αυτές οι δυσκολίες επηρεάζουν τη λειτουργικότητά σου;"),
+          q("Συνολικά, πόσο θεωρείς ότι η προσοχή/οργάνωση σε επηρεάζει αυτή την περίοδο;", "impact")
+        ]
+      },
+
+      breakup: {
+        icon: "💔",
+        title: "Τεστ Χωρισμού & Ερωτικής Απογοήτευσης",
+        short: "Χωρισμός",
+        illustration: "breakup",
+        description: "Αυτοαξιολόγηση για τη συναισθηματική επιβάρυνση μετά από χωρισμό, απόσταση, απόρριψη ή ερωτική απογοήτευση.",
+        questions: [
+          q("Πόσο συχνά σκέφτεσαι το άτομο που σε πλήγωσε ή από το οποίο απομακρύνθηκες;"),
+          q("Πόσο συχνά νιώθεις έντονη στεναχώρια για μια ερωτική απώλεια;"),
+          q("Πόσο συχνά αναπαράγεις στο μυαλό σου όσα έγιναν;"),
+          q("Πόσο συχνά δυσκολεύεσαι να αποδεχτείς αυτό που συνέβη;"),
+          q("Πόσο συχνά νιώθεις θυμό ή απογοήτευση για το πώς εξελίχθηκε;"),
+          q("Πόσο συχνά νιώθεις ότι σε έχει επηρεάσει βαθιά στην καθημερινότητά σου;"),
+          q("Πόσο συχνά συγκρίνεις νέες γνωριμίες με το άτομο αυτό;"),
+          q("Πόσο συχνά νιώθεις μοναξιά που σχετίζεται με τον χωρισμό;"),
+          q("Πόσο συχνά ψάχνεις σημάδια, μηνύματα ή εξηγήσεις;"),
+          q("Πόσο συχνά νιώθεις απόρριψη ή ότι “δεν ήσουν αρκετός/ή”;"),
+          q("Πόσο συχνά δυσκολεύεσαι να προχωρήσεις συναισθηματικά;"),
+          q("Πόσο συχνά σε πιάνει νοσταλγία ή ιδανικοποίηση του παρελθόντος;"),
+          q("Πόσο συχνά επηρεάζεται ο ύπνος ή η διάθεσή σου από αυτό;"),
+          q("Πόσο συχνά νιώθεις ανάγκη να έρθεις ξανά σε επαφή;"),
+          q("Πόσο συχνά δυσκολεύεσαι να χαρείς το παρόν λόγω αυτής της ιστορίας;"),
+          q("Πόσο συχνά αισθάνεσαι ενοχές για πράγματα που έγιναν;"),
+          q("Πόσο συχνά αποφεύγεις να ανοιχτείς ξανά από φόβο;"),
+          q("Πόσο συχνά νιώθεις ότι δεν έχει κλείσει ακόμη συναισθηματικά αυτό το κεφάλαιο;"),
+          qr("Αισθάνεσαι ότι σταδιακά ανακτάς τη συναισθηματική σου ισορροπία;", "agreement"),
+          qr("Μπορείς να φανταστείς τον εαυτό σου να προχωρά μπροστά;", "agreement"),
+          qr("Νιώθεις ότι έχεις αρχίσει να βλέπεις την εμπειρία με περισσότερη αποδοχή;", "agreement"),
+          q("Πόσο συχνά επηρεάζεται η αυτοεκτίμησή σου από αυτή την απογοήτευση;"),
+          q("Πόσο συχνά η εμπειρία αυτή σου δημιουργεί έντονο συναισθηματικό βάρος;"),
+          qr("Έχεις κοντινούς ανθρώπους που σε στηρίζουν ουσιαστικά;", "agreement"),
+          q("Συνολικά, πόσο θεωρείς ότι ο χωρισμός ή η ερωτική απογοήτευση σε επηρεάζει αυτή την περίοδο;", "impact")
+        ]
+      }
+    };
+
+    const state = {
+      currentTestKey: null,
+      currentQuestionIndex: 0,
+      answers: [],
+      email: ""
+    };
+
+    const screens = {
+      home: document.getElementById("homeScreen"),
+      intro: document.getElementById("introScreen"),
+      quiz: document.getElementById("quizScreen"),
+      email: document.getElementById("emailScreen"),
+      results: document.getElementById("resultsScreen")
+    };
+
+    const testsGrid = document.getElementById("testsGrid");
+
+    function showScreen(name){
+      Object.values(screens).forEach(screen => screen.classList.remove("active"));
+      screens[name].classList.add("active");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function escapeHtml(str){
+      return str
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#039;");
+    }
+
+    function renderHomeCards(){
+      const keys = Object.keys(TESTS);
+      testsGrid.innerHTML = keys.map(key => {
+        const test = TESTS[key];
+        return `
+          <article class="test-card" onclick="selectTest('${key}')">
+            <div class="icon">${test.icon}</div>
+            <h3>${test.title}</h3>
+            <p>${test.description}</p>
+            <div class="card-footer">
+              <span>~5 λεπτά</span>
+              <strong>25 ερωτήσεις →</strong>
+            </div>
+          </article>
+        `;
+      }).join("");
+    }
+
+    function selectTest(key){
+      state.currentTestKey = key;
+      state.currentQuestionIndex = 0;
+      state.answers = new Array(TESTS[key].questions.length).fill(null);
+
+      const test = TESTS[key];
+      document.getElementById("introTitle").textContent = test.title;
+      document.getElementById("introDescription").textContent = test.description;
+      document.getElementById("introQuestionsCount").textContent = test.questions.length;
+      document.getElementById("introIllustration").innerHTML = illustrations[test.illustration];
+      showScreen("intro");
+    }
+
+    window.selectTest = selectTest;
+
+    document.getElementById("startQuizBtn").addEventListener("click", () => {
+      renderQuestion();
+      showScreen("quiz");
+    });
+
+    document.getElementById("backHomeBtn").addEventListener("click", () => {
+      showScreen("home");
+    });
+
+    function renderQuestion(){
+      const test = TESTS[state.currentTestKey];
+      const question = test.questions[state.currentQuestionIndex];
+      const total = test.questions.length;
+      const current = state.currentQuestionIndex + 1;
+      const percent = Math.round((current / total) * 100);
+
+      document.getElementById("quizTestTitle").textContent = test.title;
+      document.getElementById("questionTag").textContent = test.short;
+      document.getElementById("questionText").textContent = question.text;
+      document.getElementById("questionIllustration").innerHTML = illustrations[test.illustration];
+      document.getElementById("progressLabel").textContent = `Ερώτηση ${current} από ${total}`;
+      document.getElementById("progressPercent").textContent = `${percent}%`;
+      document.getElementById("progressBar").style.width = `${percent}%`;
+
+      const options = scales[question.scale || "frequency"];
+      const selectedValue = state.answers[state.currentQuestionIndex];
+
+      document.getElementById("optionsWrap").innerHTML = options.map((option, idx) => `
+        <button class="option-btn ${selectedValue === idx ? "active" : ""}" onclick="answerOption(${idx})">
+          <span>${option}</span>
+          <span class="option-dot"></span>
+        </button>
+      `).join("");
+
+      document.getElementById("prevQuestionBtn").disabled = state.currentQuestionIndex === 0;
+      document.getElementById("prevQuestionBtn").style.opacity = state.currentQuestionIndex === 0 ? ".55" : "1";
+      document.getElementById("nextQuestionBtn").textContent =
+        state.currentQuestionIndex === total - 1 ? "Ολοκλήρωση" : "Επόμενη";
+    }
+
+    function answerOption(value){
+      state.answers[state.currentQuestionIndex] = value;
+      renderQuestion();
+      setTimeout(() => {
+        const test = TESTS[state.currentTestKey];
+        if (state.currentQuestionIndex < test.questions.length - 1){
+          state.currentQuestionIndex += 1;
+          renderQuestion();
+        }
+      }, 180);
+    }
+
+    window.answerOption = answerOption;
+
+    document.getElementById("prevQuestionBtn").addEventListener("click", () => {
+      if (state.currentQuestionIndex > 0){
+        state.currentQuestionIndex -= 1;
+        renderQuestion();
+      }
+    });
+
+    document.getElementById("nextQuestionBtn").addEventListener("click", () => {
+      const total = TESTS[state.currentTestKey].questions.length;
+      const currentAnswer = state.answers[state.currentQuestionIndex];
+
+      if (currentAnswer === null){
+        alert("Επίλεξε πρώτα μία απάντηση.");
+        return;
+      }
+
+      if (state.currentQuestionIndex < total - 1){
+        state.currentQuestionIndex += 1;
+        renderQuestion();
+      } else {
+        showScreen("email");
+      }
+    });
+
+    document.getElementById("backToQuizBtn").addEventListener("click", () => {
+      showScreen("quiz");
+    });
+
+    function calculateResult(){
+      const test = TESTS[state.currentTestKey];
+      let totalScore = 0;
+      let maxScore = 0;
+
+      test.questions.forEach((question, idx) => {
+        const raw = state.answers[idx] ?? 0;
+        const value = question.reverse ? (4 - raw) : raw;
+        totalScore += value;
+        maxScore += 4;
+      });
+
+      const percent = Math.round((totalScore / maxScore) * 100);
+
+      let level = "Χαμηλή ένδειξη";
+      let headline = "Η εικόνα σου δείχνει σχετικά χαμηλή επιβάρυνση.";
+      let summary = "Με βάση τις απαντήσεις σου, δεν φαίνεται αυτή τη στιγμή ιδιαίτερα έντονη επιβάρυνση στον συγκεκριμένο τομέα.";
+      let impact = "Χαμηλή";
+      let action = "Παρατήρηση και φροντίδα";
+      let load = "Ήπια έως χαμηλή";
+      let showAlert = false;
+
+      if (percent >= 25 && percent < 50){
+        level = "Ήπια ένδειξη";
+        headline = "Υπάρχουν κάποιες ενδείξεις που αξίζει να παρατηρήσεις.";
+        summary = "Οι απαντήσεις σου δείχνουν ότι υπάρχουν ορισμένα σημεία που ενδέχεται να επηρεάζουν την ισορροπία σου, χωρίς να φαίνονται ιδιαίτερα έντονα.";
+        impact = "Ήπια";
+        action = "Παρακολούθηση";
+        load = "Ήπια";
+      } else if (percent >= 50 && percent < 75){
+        level = "Μέτρια ένδειξη";
+        headline = "Φαίνεται να υπάρχει αισθητή επιβάρυνση στον συγκεκριμένο τομέα.";
+        summary = "Οι απαντήσεις σου δείχνουν ότι ο συγκεκριμένος τομέας επηρεάζει αρκετά την καθημερινότητα, τη συναισθηματική σου ισορροπία ή τη λειτουργικότητά σου.";
+        impact = "Μέτρια";
+        action = "Περισσότερη φροντίδα / εξερεύνηση";
+        load = "Μέτρια";
+      } else if (percent >= 75){
+        level = "Υψηλή ένδειξη";
+        headline = "Η παρούσα εικόνα δείχνει αρκετά έντονη επιβάρυνση.";
+        summary = "Οι απαντήσεις σου δείχνουν ότι ο συγκεκριμένος τομέας φαίνεται να σε επηρεάζει σημαντικά αυτή την περίοδο. Ίσως αξίζει να αναζητήσεις περισσότερη στήριξη και φροντίδα.";
+        impact = "Υψηλή";
+        action = "Στήριξη / επαγγελματική καθοδήγηση";
+        load = "Αυξημένη";
+        showAlert = true;
+      }
+
+      return {
+        percent,
+        level,
+        headline,
+        summary,
+        impact,
+        action,
+        load,
+        showAlert,
+        testTitle: TESTS[state.currentTestKey].title
+      };
+    }
+
+    async function maybeSendEmail(result){
+      // Demo mode: χωρίς backend / χωρίς EmailJS, δεν στέλνει πραγματικά email.
+      // Όταν βάλεις EmailJS IDs, μπορείς να το συνδέσεις αργότερα.
+      if (!EMAILJS_PUBLIC_KEY || !EMAILJS_SERVICE_ID || !EMAILJS_TEMPLATE_ID) {
+        return false;
+      }
+      return false;
+    }
+
+    document.getElementById("showResultsBtn").addEventListener("click", async () => {
+      const email = document.getElementById("userEmail").value.trim();
+      const consentResults = document.getElementById("consentResults").checked;
+      const consentPrivacy = document.getElementById("consentPrivacy").checked;
+
+      if (!email){
+        alert("Συμπλήρωσε πρώτα το email σου.");
+        return;
+      }
+      if (!consentResults){
+        alert("Χρειάζεται να συμφωνείς στην αποστολή του αποτελέσματος στο email.");
+        return;
+      }
+      if (!consentPrivacy){
+        alert("Χρειάζεται να αποδεχτείς την πολιτική απορρήτου / όρους χρήσης.");
+        return;
+      }
+
+      state.email = email;
+      const result = calculateResult();
+
+      document.getElementById("scoreValue").textContent = result.percent;
+      document.getElementById("scoreLevel").textContent = result.level;
+      document.getElementById("scoreRing").style.setProperty("--percent", result.percent);
+      document.getElementById("resultBadge").textContent = result.testTitle;
+      document.getElementById("resultHeadline").textContent = result.headline;
+      document.getElementById("resultSummary").textContent = result.summary;
+      document.getElementById("resultLoad").textContent = result.load;
+      document.getElementById("resultImpact").textContent = result.impact;
+      document.getElementById("resultAction").textContent = result.action;
+      document.getElementById("ebookBtn").href = SHOPIFY_URL;
+
+      const alertBox = document.getElementById("highAlertBox");
+      if (result.showAlert){
+        alertBox.classList.remove("hidden");
+      } else {
+        alertBox.classList.add("hidden");
+      }
+
+      await maybeSendEmail(result);
+      showScreen("results");
+    });
+
+    document.getElementById("restartBtn").addEventListener("click", () => {
+      document.getElementById("userEmail").value = "";
+      document.getElementById("consentResults").checked = true;
+      document.getElementById("consentMarketing").checked = false;
+      document.getElementById("consentPrivacy").checked = false;
+      showScreen("home");
+    });
+
+    renderHomeCards();
+  </script>
+</body>
+</html>
