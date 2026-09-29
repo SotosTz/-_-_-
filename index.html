@@ -18,7 +18,7 @@
 
   <style>
     :root{
-      --bg:#ffffff;
+      --bg:linear-gradient(135deg,#c6adef 0%,#d9c8f5 55%,#c9b2f0 100%);
       --bg-soft:#fbf9ff;
       --card:#ffffff;
       --card-soft:#f7f4ff;
@@ -41,6 +41,7 @@
       padding:0;
       font-family:'Inter',system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
       background:var(--bg);
+      background-attachment:fixed;
       color:var(--text);
       scroll-behavior:smooth;
     }
@@ -109,11 +110,15 @@
     }
 
     .hero{
-      display:grid;
-      grid-template-columns:1.05fr .95fr;
-      gap:36px;
-      align-items:center;
-      padding:32px 0 12px;
+      display:block;
+      padding:42px 0 22px;
+    }
+
+    .hero-copy{
+      width:100%;
+      max-width:1040px;
+      margin:0 auto;
+      text-align:center;
     }
 
     .eyebrow{
@@ -134,16 +139,18 @@
     }
 
     .hero p{
-      margin:0 0 24px;
+      margin:0 auto 24px;
       color:var(--muted);
       font-size:1.12rem;
       line-height:1.75;
-      max-width:720px;
+      max-width:900px;
+      font-weight:600; /* λίγο πιο έντονο, χωρίς να μεγαλώσει */
     }
 
     .hero-meta{
       display:flex;
       flex-wrap:wrap;
+      justify-content:center;
       gap:12px;
     }
 
@@ -515,7 +522,12 @@
 
     .question-art img{
       width:100%;
+      height:100%;
+      min-height:220px;
+      max-height:320px;
+      object-fit:contain;
       display:block;
+      background:#fff;
     }
 
     .question-card .q-tag{
@@ -765,6 +777,7 @@
 
     .result-copy p{
       margin:0;
+      font-weight:600;
     }
 
     .summary-grid{
@@ -795,36 +808,82 @@
       line-height:1.3;
     }
 
+    .analysis-box{
+      margin-top:22px;
+      border:1px solid var(--border);
+      background:#fff;
+      border-radius:28px;
+      padding:24px;
+    }
+
+    .analysis-box h4{
+      margin:0 0 14px;
+      font-size:1.22rem;
+      font-weight:900;
+    }
+
+    .analysis-box p{
+      margin:0 0 13px;
+      color:var(--muted);
+      line-height:1.82;
+      font-size:1.02rem;
+      font-weight:600;
+    }
+
+    .analysis-box p:last-child{
+      margin-bottom:0;
+    }
+
+    .score-note{
+      margin-top:14px;
+      padding:13px 15px;
+      border-radius:18px;
+      background:var(--primary-soft);
+      color:#655a80;
+      font-size:.92rem;
+      line-height:1.65;
+      font-weight:600;
+    }
+
     .offer-box{
       margin-top:22px;
       border:1px solid #e1d7ff;
       background:#fcfbff;
       border-radius:28px;
-      padding:22px;
+      padding:28px 22px;
+      text-align:center;
     }
 
     .offer-box h4{
-      margin:0 0 8px;
-      font-size:1.16rem;
+      margin:0 0 10px;
+      font-size:1.28rem;
       font-weight:900;
     }
 
     .offer-box p{
-      margin:0 0 16px;
+      margin:0 auto 18px;
+      max-width:760px;
+      line-height:1.8;
     }
 
-    .coupon{
-      display:inline-flex;
-      align-items:center;
+    .offer-box .btn-row{
       justify-content:center;
-      padding:12px 18px;
-      border-radius:16px;
-      background:var(--primary-soft);
-      border:1px dashed #ccbfff;
-      color:var(--primary-dark);
-      font-weight:900;
-      letter-spacing:.05em;
-      margin-bottom:14px;
+    }
+
+    .email-delivery-status{
+      margin-top:16px;
+      color:var(--muted);
+      font-size:.94rem;
+      line-height:1.65;
+      font-weight:600;
+    }
+
+    .email-delivery-status.success{
+      color:#157b54;
+    }
+
+    .email-delivery-status.error{
+      color:#b23b5f;
     }
 
     .help-box{
@@ -942,7 +1001,6 @@
     <section id="homeScreen" class="screen active">
       <div class="hero">
         <div class="hero-copy">
-          <div class="eyebrow">Minimal • Responsive • Professional</div>
           <h1>Ανακάλυψε το τεστ που σου ταιριάζει περισσότερο.</h1>
           <p>
             Διάλεξε ένα από τα διαθέσιμα τεστ και ανακάλυψε το επίπεδο ψυχολογικής επιβάρυνσης ή ισορροπίας σου
@@ -955,35 +1013,6 @@
           </div>
         </div>
 
-        <div class="hero-card">
-          <div class="hero-card-head">
-            <div>
-              <div class="eyebrow" style="margin-bottom:8px">Quick Preview</div>
-              <h3>Καθαρό design, επαγγελματική εμπειρία, mobile first.</h3>
-              <p>
-                Minimal λευκό φόντο, μωβ λεπτομέρειες, ήπιες μεταβάσεις, cartoon-style αναπαραστάσεις και άμεση πλοήγηση.
-              </p>
-            </div>
-            <div class="mini-number">
-              <strong>25</strong>
-              <span>ερωτήσεις</span>
-            </div>
-          </div>
-
-          <div class="art-panel" style="min-height:260px">
-            <svg viewBox="0 0 500 300" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect x="60" y="55" width="380" height="170" rx="28" fill="#FFF"/>
-              <rect x="87" y="82" width="110" height="14" rx="7" fill="#ECE4FF"/>
-              <rect x="87" y="112" width="210" height="14" rx="7" fill="#E9E0FF"/>
-              <rect x="87" y="142" width="268" height="14" rx="7" fill="#E9E0FF"/>
-              <rect x="87" y="172" width="290" height="14" rx="7" fill="#E9E0FF"/>
-              <rect x="87" y="198" width="120" height="24" rx="12" fill="#F2EDFF"/>
-              <rect x="224" y="198" width="135" height="24" rx="12" fill="#7B5CFF"/>
-              <circle cx="317" cy="210" r="8" fill="#fff"/>
-              <path d="M304 210H330" stroke="#fff" stroke-width="4" stroke-linecap="round"/>
-            </svg>
-          </div>
-        </div>
       </div>
 
       <div class="section-title">
@@ -1083,24 +1112,18 @@
         <div class="eyebrow">Το αποτέλεσμα είναι έτοιμο</div>
         <h2>Συμπλήρωσε το email σου για να δεις το αποτέλεσμα και να το λάβεις και στο inbox σου.</h2>
         <p>
-          Το αποτέλεσμα θα εμφανιστεί άμεσα και στη σελίδα. Παράλληλα, μπορεί να σταλεί και στο email του χρήστη
-          μέσω EmailJS, μόλις συμπληρώσεις τα δικά σου στοιχεία σύνδεσης παρακάτω στον κώδικα.
+          Το αποτέλεσμα θα εμφανιστεί άμεσα στη σελίδα και θα αποσταλεί αυτόματα και στο email που θα συμπληρώσεις.
         </p>
 
         <div class="field">
           <label for="userEmail">Το email σου</label>
-          <input type="email" id="userEmail" placeholder="π.χ. example@gmail.com" />
+          <input type="email" id="userEmail" placeholder="π.χ. example@gmail.com" required autocomplete="email" />
         </div>
 
         <div class="checks">
           <label class="check">
             <input type="checkbox" id="consentResults" checked />
-            <span>Συναινώ στην αποστολή των αποτελεσμάτων μου στο email μου.</span>
-          </label>
-
-          <label class="check">
-            <input type="checkbox" id="consentMarketing" />
-            <span>Συναινώ στη χρήση του email μου για ενημερωτικό υλικό και νέο εκπαιδευτικό περιεχόμενο σχετικό με ψυχολογία και ευεξία.</span>
+            <span>Συναινώ στην αποστολή των αποτελεσμάτων μου στο email μου και στη χρήση του email μου για ενημερωτικό υλικό και νέο εκπαιδευτικό περιεχόμενο σχετικό με ψυχολογία και ευεξία.</span>
           </label>
 
           <label class="check">
@@ -1127,9 +1150,9 @@
           <div class="ring-box">
             <div id="scoreRing" class="score-ring" style="--percent: 0;">
               <div class="score-inner">
-                <small id="scoreCaption">Συνολικό σκορ</small>
+                <small id="scoreCaption">Σκορ αυτοαξιολόγησης</small>
                 <strong id="scoreValue">0</strong>
-                <span id="scoreLevel">Χαμηλή ένδειξη</span>
+                <span id="scoreLevel">Χαμηλή επιβάρυνση</span>
               </div>
             </div>
           </div>
@@ -1158,15 +1181,26 @@
           </div>
         </div>
 
+        <div class="analysis-box">
+          <h4>Τι δείχνουν οι απαντήσεις σου</h4>
+          <div id="resultDetailedAnalysis"></div>
+          <div class="score-note">
+            Το σκορ αφορά αποκλειστικά αυτή την αυτοαξιολόγηση. Δεν αποτελεί ποσοστό διάγνωσης ή πιθανότητα ότι έχεις κάποια ψυχική διαταραχή.
+          </div>
+        </div>
+
         <div class="offer-box">
-          <h4>Θέλεις να το δουλέψεις περισσότερο;</h4>
-          <p>Δες το σχετικό ebook και αξιοποίησε τον παρακάτω εκπτωτικό κωδικό.</p>
-          <div class="coupon">QUIZ15</div>
+          <h4>Ξεπερνώντας το Άγχος</h4>
+          <p id="ebookDescription">
+            Το e-book μας είναι ένας πρακτικός οδηγός που σε βοηθά να κατανοήσεις καλύτερα πώς λειτουργεί το άγχος,
+            να αναγνωρίζεις τα μοτίβα που το ενισχύουν και να εφαρμόζεις πρακτικές τεχνικές διαχείρισης, αποφόρτισης και αυτοπαρατήρησης στην καθημερινότητα.
+          </p>
 
           <div class="btn-row">
-            <a class="btn btn-primary" id="ebookBtn" href="https://example.com" target="_blank" rel="noopener">Δες το ebook</a>
+            <a class="btn btn-primary" id="ebookBtn" href="https://example.com" target="_blank" rel="noopener">Δες το e-book «Ξεπερνώντας το Άγχος»</a>
             <button class="btn btn-secondary" id="restartBtn">Ξεκίνα από την αρχή</button>
           </div>
+          <div id="emailDeliveryStatus" class="email-delivery-status"></div>
         </div>
 
         <div id="highAlertBox" class="help-box hidden">
@@ -1203,16 +1237,29 @@
     ========================== */
 
     const BRAND_NAME = "ΨΥΧΟΛΟΓΟΣ";
-    const SHOPIFY_URL = "https://example.com";
 
-    /* ΓΙΑ ΑΠΟΣΤΟΛΗ EMAIL ΜΕ EMAILJS
-       1) Φτιάξε λογαριασμό στο https://www.emailjs.com
-       2) Πάρε PUBLIC KEY, SERVICE ID, TEMPLATE ID
-       3) Συμπλήρωσέ τα εδώ
-    */
-    const EMAILJS_PUBLIC_KEY = "";
-    const EMAILJS_SERVICE_ID = "";
-    const EMAILJS_TEMPLATE_ID = "";
+    /* ==========================================================
+       LINK ΤΟΥ E-BOOK ΣΤΟ SHOPIFY — ΑΛΛΑΖΕΙΣ ΜΟΝΟ ΑΥΤΗ ΤΗ ΓΡΑΜΜΗ
+       ========================================================== */
+    const SHOPIFY_URL = "https://sg7wry-6p.myshopify.com/pages/αγορά-βιβλίο-1";
+    const EBOOK_TITLE = "Ξεπερνώντας το Άγχος";
+    const EBOOK_DESCRIPTION = "Ένας πρακτικός οδηγός για να κατανοήσεις καλύτερα το άγχος, να αναγνωρίζεις τα μοτίβα που το ενισχύουν και να εφαρμόζεις πρακτικές τεχνικές διαχείρισης, αποφόρτισης και αυτοπαρατήρησης στην καθημερινότητα.";
+
+    /* ==========================================================
+       ΑΠΟΣΤΟΛΗ ΑΠΟΤΕΛΕΣΜΑΤΟΣ ΣΤΟ EMAIL ΤΟΥ ΧΡΗΣΤΗ — EMAILJS
+       1) Φτιάχνεις λογαριασμό στο EmailJS.
+       2) Συνδέεις το email/service αποστολής σου.
+       3) Στο Email Template βάλε ως παραλήπτη (To Email): {{to_email}}
+       4) Στο body του template μπορείς να χρησιμοποιήσεις:
+          {{test_title}}, {{score_value}}, {{score_level}},
+          {{result_headline}}, {{result_analysis}},
+          {{ebook_title}}, {{ebook_description}}, {{ebook_url}}, {{disclaimer}}
+       5) Βάζεις παρακάτω PUBLIC KEY, SERVICE ID και TEMPLATE ID.
+       Χωρίς αυτά τα 3 στοιχεία ένα στατικό GitHub Pages site δεν μπορεί να στείλει email μόνο του.
+       ========================================================== */
+    const EMAILJS_PUBLIC_KEY = "sMKrs5sb9IIdQMG0s";
+    const EMAILJS_SERVICE_ID = "service_22yedqh";
+    const EMAILJS_TEMPLATE_ID = "template_2rufbxf";
 
     if (EMAILJS_PUBLIC_KEY) {
       emailjs.init({
@@ -1344,6 +1391,246 @@
       sexuality: makeCartoon({ bg:"#EAF4FF", face:"open", shirt:"#8F72FF", pose:"love", bubble:"?" }),
       adhd: makeCartoon({ bg:"#EEF7FF", face:"open", shirt:"#A18BFF", pose:"stress" }),
       breakup: makeCartoon({ bg:"#F0F6FF", face:"sad", shirt:"#B89DFF", bubble:"..." })
+    };
+
+    /* ==========================================================
+       ΔΙΚΕΣ ΣΟΥ ΕΙΚΟΝΕΣ — ΑΛΛΑΖΕΙΣ ΜΟΝΟ ΑΥΤΟ ΤΟ ΣΗΜΕΙΟ
+       ----------------------------------------------------------
+       1) Ανέβασε τις εικόνες σου στο GitHub μέσα σε φάκελο "images".
+       2) Βάλε εδώ το path, π.χ. "images/anxiety-01.png".
+       3) Αν αφήσεις "", θα εμφανίζεται το υπάρχον minimal cartoon.
+       ========================================================== */
+
+    // ΕΙΚΟΝΑ ΣΤΗΝ ΕΙΣΑΓΩΓΗ ΚΑΘΕ ΤΕΣΤ (η μεγάλη πλαϊνή εικόνα)
+    const TEST_COVER_IMAGES = {
+      anxiety: "",
+      stress: "",
+      selfEsteem: "",
+      depression: "",
+      relationships: "",
+      sexuality: "",
+      adhd: "",
+      breakup: ""
+    };
+
+    // ΕΙΚΟΝΑ ΓΙΑ ΚΑΘΕ ΜΙΑ ΑΠΟ ΤΙΣ 25 ΕΡΩΤΗΣΕΙΣ
+    const QUESTION_IMAGES = {
+      anxiety: [
+        "", // 01 — βάλε εδώ π.χ. "images/anxiety-01.png"
+        "", // 02 — βάλε εδώ π.χ. "images/anxiety-02.png"
+        "", // 03 — βάλε εδώ π.χ. "images/anxiety-03.png"
+        "", // 04 — βάλε εδώ π.χ. "images/anxiety-04.png"
+        "", // 05 — βάλε εδώ π.χ. "images/anxiety-05.png"
+        "", // 06 — βάλε εδώ π.χ. "images/anxiety-06.png"
+        "", // 07 — βάλε εδώ π.χ. "images/anxiety-07.png"
+        "", // 08 — βάλε εδώ π.χ. "images/anxiety-08.png"
+        "", // 09 — βάλε εδώ π.χ. "images/anxiety-09.png"
+        "", // 10 — βάλε εδώ π.χ. "images/anxiety-10.png"
+        "", // 11 — βάλε εδώ π.χ. "images/anxiety-11.png"
+        "", // 12 — βάλε εδώ π.χ. "images/anxiety-12.png"
+        "", // 13 — βάλε εδώ π.χ. "images/anxiety-13.png"
+        "", // 14 — βάλε εδώ π.χ. "images/anxiety-14.png"
+        "", // 15 — βάλε εδώ π.χ. "images/anxiety-15.png"
+        "", // 16 — βάλε εδώ π.χ. "images/anxiety-16.png"
+        "", // 17 — βάλε εδώ π.χ. "images/anxiety-17.png"
+        "", // 18 — βάλε εδώ π.χ. "images/anxiety-18.png"
+        "", // 19 — βάλε εδώ π.χ. "images/anxiety-19.png"
+        "", // 20 — βάλε εδώ π.χ. "images/anxiety-20.png"
+        "", // 21 — βάλε εδώ π.χ. "images/anxiety-21.png"
+        "", // 22 — βάλε εδώ π.χ. "images/anxiety-22.png"
+        "", // 23 — βάλε εδώ π.χ. "images/anxiety-23.png"
+        "", // 24 — βάλε εδώ π.χ. "images/anxiety-24.png"
+        "" // 25 — βάλε εδώ π.χ. "images/anxiety-25.png"
+      ],
+      stress: [
+        "", // 01 — βάλε εδώ π.χ. "images/stress-01.png"
+        "", // 02 — βάλε εδώ π.χ. "images/stress-02.png"
+        "", // 03 — βάλε εδώ π.χ. "images/stress-03.png"
+        "", // 04 — βάλε εδώ π.χ. "images/stress-04.png"
+        "", // 05 — βάλε εδώ π.χ. "images/stress-05.png"
+        "", // 06 — βάλε εδώ π.χ. "images/stress-06.png"
+        "", // 07 — βάλε εδώ π.χ. "images/stress-07.png"
+        "", // 08 — βάλε εδώ π.χ. "images/stress-08.png"
+        "", // 09 — βάλε εδώ π.χ. "images/stress-09.png"
+        "", // 10 — βάλε εδώ π.χ. "images/stress-10.png"
+        "", // 11 — βάλε εδώ π.χ. "images/stress-11.png"
+        "", // 12 — βάλε εδώ π.χ. "images/stress-12.png"
+        "", // 13 — βάλε εδώ π.χ. "images/stress-13.png"
+        "", // 14 — βάλε εδώ π.χ. "images/stress-14.png"
+        "", // 15 — βάλε εδώ π.χ. "images/stress-15.png"
+        "", // 16 — βάλε εδώ π.χ. "images/stress-16.png"
+        "", // 17 — βάλε εδώ π.χ. "images/stress-17.png"
+        "", // 18 — βάλε εδώ π.χ. "images/stress-18.png"
+        "", // 19 — βάλε εδώ π.χ. "images/stress-19.png"
+        "", // 20 — βάλε εδώ π.χ. "images/stress-20.png"
+        "", // 21 — βάλε εδώ π.χ. "images/stress-21.png"
+        "", // 22 — βάλε εδώ π.χ. "images/stress-22.png"
+        "", // 23 — βάλε εδώ π.χ. "images/stress-23.png"
+        "", // 24 — βάλε εδώ π.χ. "images/stress-24.png"
+        "" // 25 — βάλε εδώ π.χ. "images/stress-25.png"
+      ],
+      selfEsteem: [
+        "", // 01 — βάλε εδώ π.χ. "images/selfesteem-01.png"
+        "", // 02 — βάλε εδώ π.χ. "images/selfesteem-02.png"
+        "", // 03 — βάλε εδώ π.χ. "images/selfesteem-03.png"
+        "", // 04 — βάλε εδώ π.χ. "images/selfesteem-04.png"
+        "", // 05 — βάλε εδώ π.χ. "images/selfesteem-05.png"
+        "", // 06 — βάλε εδώ π.χ. "images/selfesteem-06.png"
+        "", // 07 — βάλε εδώ π.χ. "images/selfesteem-07.png"
+        "", // 08 — βάλε εδώ π.χ. "images/selfesteem-08.png"
+        "", // 09 — βάλε εδώ π.χ. "images/selfesteem-09.png"
+        "", // 10 — βάλε εδώ π.χ. "images/selfesteem-10.png"
+        "", // 11 — βάλε εδώ π.χ. "images/selfesteem-11.png"
+        "", // 12 — βάλε εδώ π.χ. "images/selfesteem-12.png"
+        "", // 13 — βάλε εδώ π.χ. "images/selfesteem-13.png"
+        "", // 14 — βάλε εδώ π.χ. "images/selfesteem-14.png"
+        "", // 15 — βάλε εδώ π.χ. "images/selfesteem-15.png"
+        "", // 16 — βάλε εδώ π.χ. "images/selfesteem-16.png"
+        "", // 17 — βάλε εδώ π.χ. "images/selfesteem-17.png"
+        "", // 18 — βάλε εδώ π.χ. "images/selfesteem-18.png"
+        "", // 19 — βάλε εδώ π.χ. "images/selfesteem-19.png"
+        "", // 20 — βάλε εδώ π.χ. "images/selfesteem-20.png"
+        "", // 21 — βάλε εδώ π.χ. "images/selfesteem-21.png"
+        "", // 22 — βάλε εδώ π.χ. "images/selfesteem-22.png"
+        "", // 23 — βάλε εδώ π.χ. "images/selfesteem-23.png"
+        "", // 24 — βάλε εδώ π.χ. "images/selfesteem-24.png"
+        "" // 25 — βάλε εδώ π.χ. "images/selfesteem-25.png"
+      ],
+      depression: [
+        "", // 01 — βάλε εδώ π.χ. "images/depression-01.png"
+        "", // 02 — βάλε εδώ π.χ. "images/depression-02.png"
+        "", // 03 — βάλε εδώ π.χ. "images/depression-03.png"
+        "", // 04 — βάλε εδώ π.χ. "images/depression-04.png"
+        "", // 05 — βάλε εδώ π.χ. "images/depression-05.png"
+        "", // 06 — βάλε εδώ π.χ. "images/depression-06.png"
+        "", // 07 — βάλε εδώ π.χ. "images/depression-07.png"
+        "", // 08 — βάλε εδώ π.χ. "images/depression-08.png"
+        "", // 09 — βάλε εδώ π.χ. "images/depression-09.png"
+        "", // 10 — βάλε εδώ π.χ. "images/depression-10.png"
+        "", // 11 — βάλε εδώ π.χ. "images/depression-11.png"
+        "", // 12 — βάλε εδώ π.χ. "images/depression-12.png"
+        "", // 13 — βάλε εδώ π.χ. "images/depression-13.png"
+        "", // 14 — βάλε εδώ π.χ. "images/depression-14.png"
+        "", // 15 — βάλε εδώ π.χ. "images/depression-15.png"
+        "", // 16 — βάλε εδώ π.χ. "images/depression-16.png"
+        "", // 17 — βάλε εδώ π.χ. "images/depression-17.png"
+        "", // 18 — βάλε εδώ π.χ. "images/depression-18.png"
+        "", // 19 — βάλε εδώ π.χ. "images/depression-19.png"
+        "", // 20 — βάλε εδώ π.χ. "images/depression-20.png"
+        "", // 21 — βάλε εδώ π.χ. "images/depression-21.png"
+        "", // 22 — βάλε εδώ π.χ. "images/depression-22.png"
+        "", // 23 — βάλε εδώ π.χ. "images/depression-23.png"
+        "", // 24 — βάλε εδώ π.χ. "images/depression-24.png"
+        "" // 25 — βάλε εδώ π.χ. "images/depression-25.png"
+      ],
+      relationships: [
+        "", // 01 — βάλε εδώ π.χ. "images/relationships-01.png"
+        "", // 02 — βάλε εδώ π.χ. "images/relationships-02.png"
+        "", // 03 — βάλε εδώ π.χ. "images/relationships-03.png"
+        "", // 04 — βάλε εδώ π.χ. "images/relationships-04.png"
+        "", // 05 — βάλε εδώ π.χ. "images/relationships-05.png"
+        "", // 06 — βάλε εδώ π.χ. "images/relationships-06.png"
+        "", // 07 — βάλε εδώ π.χ. "images/relationships-07.png"
+        "", // 08 — βάλε εδώ π.χ. "images/relationships-08.png"
+        "", // 09 — βάλε εδώ π.χ. "images/relationships-09.png"
+        "", // 10 — βάλε εδώ π.χ. "images/relationships-10.png"
+        "", // 11 — βάλε εδώ π.χ. "images/relationships-11.png"
+        "", // 12 — βάλε εδώ π.χ. "images/relationships-12.png"
+        "", // 13 — βάλε εδώ π.χ. "images/relationships-13.png"
+        "", // 14 — βάλε εδώ π.χ. "images/relationships-14.png"
+        "", // 15 — βάλε εδώ π.χ. "images/relationships-15.png"
+        "", // 16 — βάλε εδώ π.χ. "images/relationships-16.png"
+        "", // 17 — βάλε εδώ π.χ. "images/relationships-17.png"
+        "", // 18 — βάλε εδώ π.χ. "images/relationships-18.png"
+        "", // 19 — βάλε εδώ π.χ. "images/relationships-19.png"
+        "", // 20 — βάλε εδώ π.χ. "images/relationships-20.png"
+        "", // 21 — βάλε εδώ π.χ. "images/relationships-21.png"
+        "", // 22 — βάλε εδώ π.χ. "images/relationships-22.png"
+        "", // 23 — βάλε εδώ π.χ. "images/relationships-23.png"
+        "", // 24 — βάλε εδώ π.χ. "images/relationships-24.png"
+        "" // 25 — βάλε εδώ π.χ. "images/relationships-25.png"
+      ],
+      sexuality: [
+        "", // 01 — βάλε εδώ π.χ. "images/sexuality-01.png"
+        "", // 02 — βάλε εδώ π.χ. "images/sexuality-02.png"
+        "", // 03 — βάλε εδώ π.χ. "images/sexuality-03.png"
+        "", // 04 — βάλε εδώ π.χ. "images/sexuality-04.png"
+        "", // 05 — βάλε εδώ π.χ. "images/sexuality-05.png"
+        "", // 06 — βάλε εδώ π.χ. "images/sexuality-06.png"
+        "", // 07 — βάλε εδώ π.χ. "images/sexuality-07.png"
+        "", // 08 — βάλε εδώ π.χ. "images/sexuality-08.png"
+        "", // 09 — βάλε εδώ π.χ. "images/sexuality-09.png"
+        "", // 10 — βάλε εδώ π.χ. "images/sexuality-10.png"
+        "", // 11 — βάλε εδώ π.χ. "images/sexuality-11.png"
+        "", // 12 — βάλε εδώ π.χ. "images/sexuality-12.png"
+        "", // 13 — βάλε εδώ π.χ. "images/sexuality-13.png"
+        "", // 14 — βάλε εδώ π.χ. "images/sexuality-14.png"
+        "", // 15 — βάλε εδώ π.χ. "images/sexuality-15.png"
+        "", // 16 — βάλε εδώ π.χ. "images/sexuality-16.png"
+        "", // 17 — βάλε εδώ π.χ. "images/sexuality-17.png"
+        "", // 18 — βάλε εδώ π.χ. "images/sexuality-18.png"
+        "", // 19 — βάλε εδώ π.χ. "images/sexuality-19.png"
+        "", // 20 — βάλε εδώ π.χ. "images/sexuality-20.png"
+        "", // 21 — βάλε εδώ π.χ. "images/sexuality-21.png"
+        "", // 22 — βάλε εδώ π.χ. "images/sexuality-22.png"
+        "", // 23 — βάλε εδώ π.χ. "images/sexuality-23.png"
+        "", // 24 — βάλε εδώ π.χ. "images/sexuality-24.png"
+        "" // 25 — βάλε εδώ π.χ. "images/sexuality-25.png"
+      ],
+      adhd: [
+        "", // 01 — βάλε εδώ π.χ. "images/adhd-01.png"
+        "", // 02 — βάλε εδώ π.χ. "images/adhd-02.png"
+        "", // 03 — βάλε εδώ π.χ. "images/adhd-03.png"
+        "", // 04 — βάλε εδώ π.χ. "images/adhd-04.png"
+        "", // 05 — βάλε εδώ π.χ. "images/adhd-05.png"
+        "", // 06 — βάλε εδώ π.χ. "images/adhd-06.png"
+        "", // 07 — βάλε εδώ π.χ. "images/adhd-07.png"
+        "", // 08 — βάλε εδώ π.χ. "images/adhd-08.png"
+        "", // 09 — βάλε εδώ π.χ. "images/adhd-09.png"
+        "", // 10 — βάλε εδώ π.χ. "images/adhd-10.png"
+        "", // 11 — βάλε εδώ π.χ. "images/adhd-11.png"
+        "", // 12 — βάλε εδώ π.χ. "images/adhd-12.png"
+        "", // 13 — βάλε εδώ π.χ. "images/adhd-13.png"
+        "", // 14 — βάλε εδώ π.χ. "images/adhd-14.png"
+        "", // 15 — βάλε εδώ π.χ. "images/adhd-15.png"
+        "", // 16 — βάλε εδώ π.χ. "images/adhd-16.png"
+        "", // 17 — βάλε εδώ π.χ. "images/adhd-17.png"
+        "", // 18 — βάλε εδώ π.χ. "images/adhd-18.png"
+        "", // 19 — βάλε εδώ π.χ. "images/adhd-19.png"
+        "", // 20 — βάλε εδώ π.χ. "images/adhd-20.png"
+        "", // 21 — βάλε εδώ π.χ. "images/adhd-21.png"
+        "", // 22 — βάλε εδώ π.χ. "images/adhd-22.png"
+        "", // 23 — βάλε εδώ π.χ. "images/adhd-23.png"
+        "", // 24 — βάλε εδώ π.χ. "images/adhd-24.png"
+        "" // 25 — βάλε εδώ π.χ. "images/adhd-25.png"
+      ],
+      breakup: [
+        "", // 01 — βάλε εδώ π.χ. "images/breakup-01.png"
+        "", // 02 — βάλε εδώ π.χ. "images/breakup-02.png"
+        "", // 03 — βάλε εδώ π.χ. "images/breakup-03.png"
+        "", // 04 — βάλε εδώ π.χ. "images/breakup-04.png"
+        "", // 05 — βάλε εδώ π.χ. "images/breakup-05.png"
+        "", // 06 — βάλε εδώ π.χ. "images/breakup-06.png"
+        "", // 07 — βάλε εδώ π.χ. "images/breakup-07.png"
+        "", // 08 — βάλε εδώ π.χ. "images/breakup-08.png"
+        "", // 09 — βάλε εδώ π.χ. "images/breakup-09.png"
+        "", // 10 — βάλε εδώ π.χ. "images/breakup-10.png"
+        "", // 11 — βάλε εδώ π.χ. "images/breakup-11.png"
+        "", // 12 — βάλε εδώ π.χ. "images/breakup-12.png"
+        "", // 13 — βάλε εδώ π.χ. "images/breakup-13.png"
+        "", // 14 — βάλε εδώ π.χ. "images/breakup-14.png"
+        "", // 15 — βάλε εδώ π.χ. "images/breakup-15.png"
+        "", // 16 — βάλε εδώ π.χ. "images/breakup-16.png"
+        "", // 17 — βάλε εδώ π.χ. "images/breakup-17.png"
+        "", // 18 — βάλε εδώ π.χ. "images/breakup-18.png"
+        "", // 19 — βάλε εδώ π.χ. "images/breakup-19.png"
+        "", // 20 — βάλε εδώ π.χ. "images/breakup-20.png"
+        "", // 21 — βάλε εδώ π.χ. "images/breakup-21.png"
+        "", // 22 — βάλε εδώ π.χ. "images/breakup-22.png"
+        "", // 23 — βάλε εδώ π.χ. "images/breakup-23.png"
+        "", // 24 — βάλε εδώ π.χ. "images/breakup-24.png"
+        "" // 25 — βάλε εδώ π.χ. "images/breakup-25.png"
+      ]
     };
 
     /* =========================
@@ -1682,7 +1969,9 @@
       document.getElementById("introTitle").textContent = test.title;
       document.getElementById("introDescription").textContent = test.description;
       document.getElementById("introQuestionsCount").textContent = test.questions.length;
-      document.getElementById("introIllustration").innerHTML = `<img src="${test.art}" alt="${test.title}" style="max-width:360px; width:100%; margin:0 auto;" />`;
+      const customCover = TEST_COVER_IMAGES[state.currentTestKey];
+      const introImage = customCover || test.art;
+      document.getElementById("introIllustration").innerHTML = `<img src="${introImage}" alt="${test.title}" style="max-width:360px; width:100%; max-height:360px; object-fit:contain; margin:0 auto;" />`;
     }
 
     function renderQuestion() {
@@ -1697,8 +1986,13 @@
       document.getElementById("quizTestTitle").textContent = test.title;
       document.getElementById("questionTag").textContent = test.short;
       document.getElementById("questionText").textContent = question.text;
-      document.getElementById("questionIllustrationImg").src = test.art;
-      document.getElementById("questionIllustrationImg").alt = test.title;
+      // ΔΙΚΗ ΣΟΥ ΕΙΚΟΝΑ ΑΝ ΥΠΑΡΧΕΙ — διαφορετική για κάθε ερώτηση
+      const customQuestionImage =
+        QUESTION_IMAGES[state.currentTestKey]?.[state.currentQuestionIndex] || "";
+      document.getElementById("questionIllustrationImg").src =
+        customQuestionImage || question.image || test.art;
+      document.getElementById("questionIllustrationImg").alt =
+        `Εικονογράφηση: ${question.text}`;
       document.getElementById("progressLabel").textContent = `Ερώτηση ${current} από ${total}`;
       document.getElementById("progressPercent").textContent = `${percent}%`;
       document.getElementById("progressBar").style.width = `${percent}%`;
@@ -1736,6 +2030,16 @@
       document.getElementById("resultImpact").textContent = result.impact;
       document.getElementById("resultAction").textContent = result.action;
       document.getElementById("ebookBtn").href = SHOPIFY_URL;
+      document.getElementById("ebookDescription").textContent = result.ebookDescription;
+      document.getElementById("resultDetailedAnalysis").innerHTML = result.analysisParagraphs
+        .map(paragraph => `<p>${paragraph}</p>`)
+        .join("");
+
+      const status = document.getElementById("emailDeliveryStatus");
+      status.className = "email-delivery-status";
+      status.textContent = EMAILJS_PUBLIC_KEY && EMAILJS_SERVICE_ID && EMAILJS_TEMPLATE_ID
+        ? `Γίνεται αποστολή του αποτελέσματος στο ${state.email}…`
+        : "Η αποστολή email δεν είναι ακόμη ενεργοποιημένη. Συμπλήρωσε τα 3 στοιχεία EmailJS στις ΡΥΘΜΙΣΕΙΣ του κώδικα.";
 
       const alertBox = document.getElementById("highAlertBox");
       if (result.showAlert) {
@@ -1868,6 +2172,185 @@
 
     window.selectAnswer = selectAnswer;
 
+    const RESULT_CONTENT = {
+      anxiety: {
+        area: "το άγχος",
+        focus: "ανησυχία, εσωτερική ένταση, δυσκολία χαλάρωσης και υπερανάλυση",
+        daily: "Όταν αυτά εμφανίζονται συχνά, μπορεί να επηρεάζουν τη συγκέντρωση, τον ύπνο, τις αποφάσεις και την ικανότητα να απολαμβάνεις τη στιγμή.",
+        observe: "Παρατήρησε ποιες καταστάσεις πυροδοτούν περισσότερο την ανησυχία, τι συμβαίνει στο σώμα σου εκείνη τη στιγμή και ποιοι τρόποι σε βοηθούν πραγματικά να επανέρχεσαι."
+      },
+      stress: {
+        area: "το στρες",
+        focus: "πίεση, υπερφόρτωση υποχρεώσεων, κόπωση και δυσκολία αποσύνδεσης",
+        daily: "Η συσσωρευμένη πίεση μπορεί να εμφανίζεται ως εξάντληση, ευερεθιστότητα, μειωμένη συγκέντρωση ή αίσθηση ότι δεν υπάρχει αρκετός χρόνος για ξεκούραση.",
+        observe: "Παρατήρησε πότε η πίεση κορυφώνεται, ποιες απαιτήσεις μπορούν να οργανωθούν διαφορετικά και αν υπάρχουν σταθερά διαστήματα ξεκούρασης μέσα στην εβδομάδα."
+      },
+      selfEsteem: {
+        area: "την αυτοεκτίμηση",
+        focus: "αυτοεικόνα, αυτοκριτική, αυτοπεποίθηση, όρια και ανάγκη για εξωτερική επιβεβαίωση",
+        daily: "Η σχέση που έχεις με τον εαυτό σου μπορεί να επηρεάζει τις αποφάσεις, τις σχέσεις, το πόσο διεκδικείς τις ανάγκες σου και το πώς διαχειρίζεσαι ένα λάθος ή μια κριτική.",
+        observe: "Παρατήρησε τον τρόπο με τον οποίο μιλάς στον εαυτό σου, πόσο εύκολα αναγνωρίζεις τα δυνατά σου σημεία και αν η αξία σου εξαρτάται υπερβολικά από τη γνώμη των άλλων."
+      },
+      depression: {
+        area: "τη διάθεση",
+        focus: "χαμηλή διάθεση, μειωμένο ενδιαφέρον, ενέργεια, κίνητρο και ψυχική κόπωση",
+        daily: "Όταν αυτά τα στοιχεία επιμένουν, μπορεί να επηρεάζουν την καθημερινή λειτουργικότητα, τον ύπνο, τις σχέσεις και την ικανότητα να αντλείς ευχαρίστηση από δραστηριότητες.",
+        observe: "Παρατήρησε πόσο σταθερά εμφανίζονται αυτά τα στοιχεία, πόσο διαρκούν και αν δυσκολεύουν σημαντικά την καθημερινότητά σου. Το αποτέλεσμα δεν αποτελεί διάγνωση κατάθλιψης."
+      },
+      relationships: {
+        area: "τις σχέσεις και τον έρωτα",
+        focus: "συναισθηματική ασφάλεια, επικοινωνία, εμπιστοσύνη, όρια και φόβο απόρριψης",
+        daily: "Αυτά τα μοτίβα μπορούν να επηρεάζουν το πόσο ασφαλής νιώθεις μέσα σε μια σχέση, το πώς επικοινωνείς τις ανάγκες σου και το πόσο διατηρείς τη δική σου ισορροπία.",
+        observe: "Παρατήρησε αν επαναλαμβάνονται συγκεκριμένα μοτίβα, αν μπορείς να εκφράζεις ανάγκες και όρια και αν η διάθεσή σου εξαρτάται υπερβολικά από τη στάση του άλλου."
+      },
+      sexuality: {
+        area: "τη σεξουαλική ζωή και την άνεση στην οικειότητα",
+        focus: "ικανοποίηση, άγχος απόδοσης, άνεση με το σώμα, επικοινωνία και συναισθηματική σύνδεση",
+        daily: "Η πίεση ή η αυτοκριτική γύρω από τη σεξουαλική επαφή μπορεί να μειώνει την παρουσία στη στιγμή και να επηρεάζει την επιθυμία, την επικοινωνία και τη συνολική ικανοποίηση.",
+        observe: "Παρατήρησε αν υπάρχει πίεση για απόδοση, δυσκολία να εκφράσεις επιθυμίες ή ανάγκες και αν νιώθεις ασφάλεια και αμοιβαίο σεβασμό στην οικειότητα. Το αποτέλεσμα δεν διαγιγνώσκει σεξουαλική δυσλειτουργία."
+      },
+      adhd: {
+        area: "την προσοχή και την οργάνωση",
+        focus: "συγκέντρωση, οργάνωση, αναβλητικότητα, παρορμητικότητα και διαχείριση εκκρεμοτήτων",
+        daily: "Όταν αυτές οι δυσκολίες είναι έντονες, μπορεί να επηρεάζουν σπουδές, εργασία, υποχρεώσεις και την αίσθηση ότι μπορείς να οργανώσεις αποτελεσματικά τη μέρα σου.",
+        observe: "Παρατήρησε σε ποιες συνθήκες η συγκέντρωση δυσκολεύει περισσότερο, τι σε αποσπά και ποιες δομές ή υπενθυμίσεις σε βοηθούν. Το αποτέλεσμα δεν αποτελεί διάγνωση ΔΕΠΥ."
+      },
+      breakup: {
+        area: "τον χωρισμό ή την ερωτική απογοήτευση",
+        focus: "συναισθηματικό βάρος, επαναλαμβανόμενες σκέψεις, νοσταλγία, απόρριψη και δυσκολία να προχωρήσεις",
+        daily: "Μετά από μια σημαντική απώλεια είναι συνηθισμένο να υπάρχουν κύματα συναισθημάτων. Όταν όμως το βάρος παραμένει έντονο, μπορεί να επηρεάζει ύπνο, αυτοεκτίμηση, διάθεση και νέες σχέσεις.",
+        observe: "Παρατήρησε αν υπάρχει σταδιακή αποδοχή και επαναφορά της καθημερινότητας ή αν οι σκέψεις γύρω από την εμπειρία εξακολουθούν να κυριαρχούν σε μεγάλο μέρος της ημέρας."
+      }
+    };
+
+    const RESULT_SIGNAL_GROUPS = {
+      anxiety: [
+        { label: "επίμονη ανησυχία και υπερανάλυση", indexes: [2,3,11,12,18] },
+        { label: "σωματική ενεργοποίηση του άγχους", indexes: [4,10,14] },
+        { label: "δυσκολία χαλάρωσης και αποφόρτισης", indexes: [0,5,15,16] },
+        { label: "αποφυγή, ανάγκη ελέγχου ή αναζήτηση διαβεβαίωσης", indexes: [6,8,9,19] },
+        { label: "ευαισθησία στην κριτική ή την απόρριψη", indexes: [13] }
+      ],
+      stress: [
+        { label: "υπερφόρτωση υποχρεώσεων και πίεση χρόνου", indexes: [0,1,4,6,14,18] },
+        { label: "σωματική και ψυχική κόπωση", indexes: [2,3,10,12,19] },
+        { label: "δυσκολία αποσύνδεσης και ξεκούρασης", indexes: [7,20,21,23] },
+        { label: "ευερεθιστότητα και μειωμένη αντοχή στην πίεση", indexes: [5,8,9,15,16] }
+      ],
+      selfEsteem: [
+        { label: "έντονη αυτοκριτική και αμφιβολία για την προσωπική αξία", indexes: [3,6,13,22] },
+        { label: "ανάγκη για εξωτερική επιβεβαίωση και φόβο απόρριψης", indexes: [4,5,12,16] },
+        { label: "δυσκολία στα όρια και στη διεκδίκηση αναγκών", indexes: [7,21] },
+        { label: "αρνητικές συγκρίσεις και αποφυγή ευκαιριών", indexes: [2,15,19] }
+      ],
+      depression: [
+        { label: "χαμηλή διάθεση και μειωμένο ενδιαφέρον", indexes: [0,1,5,12] },
+        { label: "χαμηλή ενέργεια, κίνητρο και ψυχική κόπωση", indexes: [2,3,4,8,15,23] },
+        { label: "απόσυρση και αίσθημα μοναξιάς", indexes: [6,7] },
+        { label: "δυσκολίες ύπνου, συγκέντρωσης ή καθημερινής φροντίδας", indexes: [10,14,22] }
+      ],
+      relationships: [
+        { label: "φόβο απόρριψης και ανάγκη επιβεβαίωσης", indexes: [0,1,2,8,15] },
+        { label: "ζήλια, υπερανάλυση ή δυσκολία εμπιστοσύνης", indexes: [4,16,21] },
+        { label: "δυσκολία επικοινωνίας και ορίων", indexes: [3,9,12,18] },
+        { label: "έντονη συναισθηματική εξάρτηση από τη στάση του άλλου", indexes: [5,14,22] }
+      ],
+      sexuality: [
+        { label: "άγχος απόδοσης και πίεση να αποδώσεις", indexes: [1,5,6,13,20,23] },
+        { label: "δυσκολία χαλάρωσης ή παρουσία στη στιγμή", indexes: [2,5,12] },
+        { label: "ανασφάλεια για το σώμα ή αυτοκριτική", indexes: [3,10,13,18] },
+        { label: "δυσκολία επικοινωνίας, οικειότητας ή συναισθηματικής σύνδεσης", indexes: [4,8,9,14,21] }
+      ],
+      adhd: [
+        { label: "δυσκολία διατήρησης προσοχής και εύκολη διάσπαση", indexes: [0,1,5,15,16,17,22] },
+        { label: "αναβλητικότητα και δυσκολία ολοκλήρωσης", indexes: [2,4,10,11,12,18] },
+        { label: "οργάνωση, προτεραιότητες και διαχείριση εκκρεμοτήτων", indexes: [3,6,9,14,19,20] },
+        { label: "παρορμητικότητα ή εσωτερική ανησυχία", indexes: [7,8,17] }
+      ],
+      breakup: [
+        { label: "επαναλαμβανόμενες σκέψεις, νοσταλγία και δυσκολία αποδοχής", indexes: [0,2,3,11,17] },
+        { label: "στεναχώρια, μοναξιά και συναισθηματικό βάρος", indexes: [1,5,7,22] },
+        { label: "αίσθημα απόρριψης ή επίδραση στην αυτοεκτίμηση", indexes: [9,15,21] },
+        { label: "δυσκολία να προχωρήσεις ή φόβο να ανοιχτείς ξανά", indexes: [6,10,16,19,20] }
+      ]
+    };
+
+    function getStrongestSignals(testKey, test) {
+      const groups = RESULT_SIGNAL_GROUPS[testKey] || [];
+      return groups
+        .map(group => {
+          const values = group.indexes
+            .filter(index => test.questions[index] && state.answers[index] !== null && state.answers[index] !== undefined)
+            .map(index => {
+              const question = test.questions[index];
+              const raw = state.answers[index];
+              return question.reverse ? (4 - raw) : raw;
+            });
+          const average = values.length ? values.reduce((a,b) => a+b, 0) / values.length : 0;
+          return { label: group.label, average };
+        })
+        .sort((a,b) => b.average - a.average)
+        .slice(0,2);
+    }
+
+    function getClinicalClarifier(testKey, strongestSignals, bandKey) {
+      if (testKey === "anxiety") {
+        const hasBodySignal = strongestSignals.some(item => item.label.includes("σωματική ενεργοποίηση"));
+        if (hasBodySignal && bandKey !== "low") {
+          return "Στις απαντήσεις σου ξεχωρίζουν και σωματικά στοιχεία άγχους. Τέτοια συμπτώματα μπορεί να εμφανίζονται σε περιόδους έντονου άγχους και μερικές φορές σε επεισόδια πανικού, όμως το συγκεκριμένο τεστ δεν μπορεί να καθορίσει αν πρόκειται για κρίσεις πανικού ή για κάποια αγχώδη διαταραχή.";
+        }
+        return "Το αποτέλεσμα περιγράφει μοτίβα άγχους και ανησυχίας, αλλά δεν μπορεί να προσδιορίσει συγκεκριμένο τύπο αγχώδους διαταραχής ούτε να διαγνώσει κρίσεις πανικού.";
+      }
+      if (testKey === "depression") {
+        return "Στοιχεία όπως χαμηλή διάθεση, μειωμένο ενδιαφέρον και χαμηλή ενέργεια μπορεί να εμφανίζονται και σε καταθλιπτικές περιόδους, όμως αυτή η αυτοαξιολόγηση δεν μπορεί να επιβεβαιώσει ή να αποκλείσει κατάθλιψη.";
+      }
+      if (testKey === "adhd") {
+        return "Δυσκολίες προσοχής, οργάνωσης ή παρορμητικότητας μπορεί να έχουν πολλές αιτίες. Το αποτέλεσμα δεν αρκεί για να επιβεβαιώσει ή να αποκλείσει ΔΕΠΥ.";
+      }
+      if (testKey === "sexuality") {
+        return "Το αποτέλεσμα αποτυπώνει την εμπειρία σου γύρω από άγχος απόδοσης, ικανοποίηση και οικειότητα, αλλά δεν αποτελεί διάγνωση σεξουαλικής δυσλειτουργίας.";
+      }
+      return "Η ανάλυση περιγράφει μοτίβα που προκύπτουν από τις απαντήσεις σου και δεν αποτελεί κλινική διάγνωση ή πρόβλεψη για κάποια ψυχική διαταραχή.";
+    }
+
+    const RESULT_BANDS = {
+      low: {
+        level: "Χαμηλή επιβάρυνση",
+        load: "Χαμηλή",
+        impact: "Περιορισμένη",
+        action: "Συνέχισε την αυτοπαρατήρηση",
+        intro: "Οι απαντήσεις σου βρίσκονται σε χαμηλότερο εύρος επιβάρυνσης στο πλαίσιο αυτού του τεστ. Αυτό σημαίνει ότι τα στοιχεία που εξετάστηκαν δεν φαίνεται να επηρεάζουν έντονα την καθημερινότητά σου αυτή την περίοδο."
+      },
+      mild: {
+        level: "Ήπια επιβάρυνση",
+        load: "Ήπια",
+        impact: "Ήπια",
+        action: "Παρατήρηση και φροντίδα",
+        intro: "Οι απαντήσεις σου δείχνουν ορισμένες δυσκολίες που αξίζει να παρατηρήσεις. Δεν φαίνεται να κυριαρχούν σε όλη την καθημερινότητά σου, όμως υπάρχουν σημεία που μπορεί να σε κουράζουν ή να σε πιέζουν περισσότερο σε συγκεκριμένες στιγμές."
+      },
+      moderate: {
+        level: "Μέτρια επιβάρυνση",
+        load: "Μέτρια",
+        impact: "Αισθητή",
+        action: "Πιο ενεργή φροντίδα",
+        intro: "Οι απαντήσεις σου δείχνουν ότι αρκετά από τα στοιχεία που εξετάζει αυτό το τεστ εμφανίζονται με αισθητή συχνότητα ή ένταση. Είναι πιθανό να επηρεάζουν ουσιαστικά ορισμένους τομείς της καθημερινότητάς σου."
+      },
+      high: {
+        level: "Αυξημένη επιβάρυνση",
+        load: "Αυξημένη",
+        impact: "Σημαντική",
+        action: "Σκέψου επιπλέον υποστήριξη",
+        intro: "Οι απαντήσεις σου βρίσκονται σε αυξημένο εύρος επιβάρυνσης στο πλαίσιο αυτής της αυτοαξιολόγησης. Αυτό δείχνει ότι αρκετά από τα στοιχεία που εξετάστηκαν φαίνεται να είναι συχνά ή έντονα και να επηρεάζουν περισσότερο την καθημερινότητά σου."
+      }
+    };
+
+    function getResultBand(percent) {
+      if (percent < 25) return "low";
+      if (percent < 50) return "mild";
+      if (percent < 75) return "moderate";
+      return "high";
+    }
+
     function calculateResult() {
       const test = TESTS[state.currentTestKey];
       let totalScore = 0;
@@ -1881,76 +2364,88 @@
       });
 
       const percent = Math.round((totalScore / maxScore) * 100);
+      const bandKey = getResultBand(percent);
+      const band = RESULT_BANDS[bandKey];
+      const content = RESULT_CONTENT[state.currentTestKey];
+      const testTitle = test.title;
+      const strongestSignals = getStrongestSignals(state.currentTestKey, test);
+      const signalText = strongestSignals.length
+        ? strongestSignals.map(item => item.label).join(" και ")
+        : content.focus;
+      const clinicalClarifier = getClinicalClarifier(state.currentTestKey, strongestSignals, bandKey);
 
-      let level = "Χαμηλή ένδειξη";
-      let headline = "Η παρούσα εικόνα δείχνει σχετικά χαμηλή επιβάρυνση.";
-      let summary = "Οι απαντήσεις σου δείχνουν ότι στον συγκεκριμένο τομέα δεν προκύπτει αυτή τη στιγμή ιδιαίτερα αυξημένη ένταση ή επιβάρυνση.";
-      let impact = "Χαμηλή";
-      let action = "Παρατήρηση και φροντίδα";
-      let load = "Ήπια έως χαμηλή";
-      let showAlert = false;
-
-      if (percent >= 25 && percent < 50) {
-        level = "Ήπια ένδειξη";
-        headline = "Υπάρχουν κάποιες ενδείξεις που αξίζει να παρατηρήσεις.";
-        summary = "Οι απαντήσεις σου δείχνουν ορισμένα σημεία που φαίνεται να σε επηρεάζουν, χωρίς όμως να δείχνουν πολύ έντονη επιβάρυνση.";
-        impact = "Ήπια";
-        action = "Παρακολούθηση";
-        load = "Ήπια";
-      } else if (percent >= 50 && percent < 75) {
-        level = "Μέτρια ένδειξη";
-        headline = "Φαίνεται να υπάρχει αισθητή επιβάρυνση στον συγκεκριμένο τομέα.";
-        summary = "Οι απαντήσεις σου δείχνουν ότι ο συγκεκριμένος τομέας επηρεάζει αρκετά την καθημερινότητα, τη συναισθηματική ισορροπία ή τη λειτουργικότητά σου.";
-        impact = "Μέτρια";
-        action = "Περισσότερη φροντίδα / εξερεύνηση";
-        load = "Μέτρια";
-      } else if (percent >= 75) {
-        level = "Υψηλή ένδειξη";
-        headline = "Η εικόνα σου δείχνει αρκετά αυξημένη επιβάρυνση αυτή την περίοδο.";
-        summary = "Οι απαντήσεις σου δείχνουν ότι ο συγκεκριμένος τομέας φαίνεται να σε επηρεάζει σημαντικά. Ίσως αξίζει να δώσεις προτεραιότητα στη φροντίδα σου και, αν χρειαστεί, να αναζητήσεις επιπλέον στήριξη.";
-        impact = "Υψηλή";
-        action = "Στήριξη / επαγγελματική καθοδήγηση";
-        load = "Αυξημένη";
-        showAlert = true;
-      }
+      const headline = `${testTitle}: ${band.level.toLowerCase()}.`;
+      const analysisParagraphs = [
+        `Ολοκλήρωσες το ${testTitle} με σκορ αυτοαξιολόγησης ${percent}/100. ${band.intro}`,
+        `Με βάση το μοτίβο των απαντήσεών σου, τα στοιχεία που ξεχωρίζουν περισσότερο σχετίζονται με ${signalText}. Αυτό δεν σημαίνει ότι υπάρχει συγκεκριμένη διάγνωση· δείχνει ποια θέματα ήταν πιο έντονα μέσα στις απαντήσεις που έδωσες.`,
+        `Στη συγκεκριμένη αυτοαξιολόγηση εξετάστηκαν κυρίως ${content.focus}. ${content.daily}`,
+        `${clinicalClarifier}`,
+        `${content.observe} Αν αυτό που βιώνεις επιμένει, σε δυσκολεύει ή επηρεάζει σημαντικά τη λειτουργικότητά σου, μια συζήτηση με επαγγελματία ψυχικής υγείας μπορεί να προσφέρει πιο εξατομικευμένη αξιολόγηση και καθοδήγηση.`
+      ];
 
       return {
         percent,
-        level,
+        bandKey,
+        level: band.level,
         headline,
-        summary,
-        impact,
-        action,
-        load,
-        showAlert,
-        testTitle: TESTS[state.currentTestKey].title
+        summary: `${band.intro} Το αποτέλεσμα αφορά ${content.area} και αποτυπώνει μόνο τις απαντήσεις που έδωσες αυτή τη στιγμή.`,
+        analysisParagraphs,
+        impact: band.impact,
+        action: band.action,
+        load: band.load,
+        showAlert: bandKey === "high",
+        testTitle,
+        ebookTitle: EBOOK_TITLE,
+        ebookDescription: EBOOK_DESCRIPTION
       };
     }
 
     async function sendEmailWithEmailJS(result) {
       if (!EMAILJS_PUBLIC_KEY || !EMAILJS_SERVICE_ID || !EMAILJS_TEMPLATE_ID) {
-        return false;
+        return { ok: false, reason: "not_configured" };
       }
 
       try {
         await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+          to_email: state.email,
           user_email: state.email,
+          reply_to: state.email,
+          email_consent: "Ναι — αποτελέσματα και ενημερωτικό υλικό",
           brand_name: BRAND_NAME,
           test_title: result.testTitle,
-          score_value: result.percent,
+          score_value: `${result.percent}/100`,
           score_level: result.level,
           result_headline: result.headline,
           result_summary: result.summary,
+          result_analysis: result.analysisParagraphs.join("\n\n"),
           result_impact: result.impact,
           result_action: result.action,
           result_load: result.load,
-          coupon_code: "QUIZ15",
-          ebook_url: SHOPIFY_URL
+          ebook_title: result.ebookTitle,
+          ebook_description: result.ebookDescription,
+          ebook_url: SHOPIFY_URL,
+          disclaimer: "Το quiz δεν αποτελεί διάγνωση και δεν υποκαθιστά επαγγελματική ψυχολογική ή ιατρική αξιολόγηση."
         });
-        return true;
+        return { ok: true };
       } catch (err) {
         console.error("EmailJS error:", err);
-        return false;
+        return { ok: false, reason: "send_failed", error: err };
+      }
+    }
+
+    function updateEmailDeliveryStatus(delivery) {
+      const status = document.getElementById("emailDeliveryStatus");
+      if (!status) return;
+
+      if (delivery.ok) {
+        status.className = "email-delivery-status success";
+        status.textContent = `Το αποτέλεσμα και το e-book link στάλθηκαν στο ${state.email}. Αν δεν το δεις σε λίγα λεπτά, έλεγξε και τα Ανεπιθύμητα/Spam.`;
+      } else if (delivery.reason === "not_configured") {
+        status.className = "email-delivery-status error";
+        status.textContent = "Το αποτέλεσμα εμφανίστηκε κανονικά, αλλά η αποστολή email δεν είναι ακόμη ενεργοποιημένη. Χρειάζεται να συμπληρωθούν τα EmailJS Public Key, Service ID και Template ID.";
+      } else {
+        status.className = "email-delivery-status error";
+        status.textContent = "Το αποτέλεσμα εμφανίστηκε κανονικά, αλλά η αποστολή email απέτυχε. Έλεγξε τις ρυθμίσεις EmailJS και το template παραλήπτη.";
       }
     }
 
@@ -2007,8 +2502,14 @@
         return;
       }
 
+      const emailIsValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+      if (!emailIsValid) {
+        alert("Γράψε ένα έγκυρο email.");
+        return;
+      }
+
       if (!consentResults) {
-        alert("Χρειάζεται να συμφωνείς στην αποστολή του αποτελέσματος στο email.");
+        alert("Χρειάζεται να συμφωνείς στην αποστολή του αποτελέσματος και στη χρήση του email για το σχετικό ενημερωτικό υλικό.");
         return;
       }
 
@@ -2022,14 +2523,16 @@
       state.lastResult = result;
 
       updateResultsScreen(result);
-      await sendEmailWithEmailJS(result);
       goTo("results");
+
+      // Το αποτέλεσμα εμφανίζεται αμέσως στη σελίδα και παράλληλα αποστέλλεται στο email.
+      const delivery = await sendEmailWithEmailJS(result);
+      updateEmailDeliveryStatus(delivery);
     });
 
     document.getElementById("restartBtn").addEventListener("click", () => {
       document.getElementById("userEmail").value = "";
       document.getElementById("consentResults").checked = true;
-      document.getElementById("consentMarketing").checked = false;
       document.getElementById("consentPrivacy").checked = false;
       state.currentTestKey = null;
       state.currentQuestionIndex = 0;
