@@ -2399,10 +2399,9 @@
       goTo("results");
 
       // Το αποτέλεσμα εμφανίζεται αμέσως στη σελίδα
-      // Το email εγγράφεται στη λίστα QUIZ - SUBSCRIBERS του Klaviyo,
-      // ώστε το Klaviyo flow να στείλει το άμεσο email και το follow-up των 7 ημερών.
-      // Δεν μεταφέρονται στο Klaviyo οι απαντήσεις, το σκορ ή το αποτέλεσμα του quiz.
-      const delivery = await subscribeEmailToKlaviyo(state.email);
+      // Στέλνουμε το αποτέλεσμα απευθείας με EmailJS κάθε φορά που ολοκληρώνεται το τεστ.
+      // Έτσι το ίδιο email μπορεί να λάβει ξανά αποτέλεσμα αν κάνει ξανά το τεστ.
+      const delivery = await sendEmailWithEmailJS(result);
       updateEmailDeliveryStatus(delivery);
     });
 
