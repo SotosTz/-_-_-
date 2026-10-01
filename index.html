@@ -510,26 +510,6 @@
       text-align:center;
     }
 
-    .question-art{
-      width:100%;
-      max-width:280px;
-      margin:0 auto 18px;
-      border-radius:26px;
-      background:#edf5ff;
-      overflow:hidden;
-      border:1px solid #d9ebff;
-    }
-
-    .question-art img{
-      width:100%;
-      height:100%;
-      min-height:220px;
-      max-height:320px;
-      object-fit:contain;
-      display:block;
-      background:#fff;
-    }
-
     .question-card .q-tag{
       display:none !important;
       align-items:center;
@@ -1087,10 +1067,6 @@
         </div>
 
         <div class="question-card">
-          <div class="question-art">
-            <img id="questionIllustrationImg" src="" alt="Εικονογράφηση ερώτησης" />
-          </div>
-
           <div class="q-tag">
             <span>•</span>
             <span id="questionTag">Αυτοαξιολόγηση</span>
@@ -1290,8 +1266,8 @@
       yesno: ["Ναι", "Όχι"]
     };
 
-    const q = (text, scale = "frequency", image = "") => ({ text, scale, reverse: false, image });
-    const qr = (text, scale = "frequency", image = "") => ({ text, scale, reverse: true, image });
+    const q = (text, scale = "frequency") => ({ text, scale, reverse: false });
+    const qr = (text, scale = "frequency") => ({ text, scale, reverse: true });
 
     function svgToDataUri(svgString) {
       return "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(svgString);
@@ -1407,9 +1383,10 @@
     /* ==========================================================
        ΔΙΚΕΣ ΣΟΥ ΕΙΚΟΝΕΣ — ΑΛΛΑΖΕΙΣ ΜΟΝΟ ΑΥΤΟ ΤΟ ΣΗΜΕΙΟ
        ----------------------------------------------------------
-       1) Ανέβασε τις εικόνες σου στο GitHub μέσα σε φάκελο "images".
-       2) Βάλε εδώ το path, π.χ. "images/anxiety-01.png".
-       3) Αν αφήσεις "", θα εμφανίζεται το υπάρχον minimal cartoon.
+       1) Ανέβασε μόνο 8 εικόνες στο GitHub μέσα σε φάκελο "images" — μία για κάθε τεστ.
+       2) Βάλε εδώ το path, π.χ. "images/anxiety-cover.png".
+       3) Οι εικόνες εμφανίζονται μόνο στην αρχική οθόνη του κάθε τεστ, όχι στις 25 ερωτήσεις.
+       4) Αν αφήσεις "", θα εμφανίζεται το υπάρχον minimal cartoon.
        ========================================================== */
 
     // ΕΙΚΟΝΑ ΣΤΗΝ ΕΙΣΑΓΩΓΗ ΚΑΘΕ ΤΕΣΤ (η μεγάλη πλαϊνή εικόνα)
@@ -1422,225 +1399,6 @@
       sexuality: "",
       adhd: "",
       breakup: ""
-    };
-
-    // ΕΙΚΟΝΑ ΓΙΑ ΚΑΘΕ ΜΙΑ ΑΠΟ ΤΙΣ 25 ΕΡΩΤΗΣΕΙΣ
-    const QUESTION_IMAGES = {
-      anxiety: [
-         "images/Worried Woman Seated in Quiet Reflection-1.png", // 01
-         "images/Anxious Young Man on Lavender-2.png", // 02
-         "images/Worried Woman in Lavender Setting-3.png", // 03
-         "images/Sleepless Night in Bed-4.png", // 04
-         "images/Woman Holding Her Stomach in Pain-5.png", // 05
-         "images/Stressed Woman Holding Her Head-6.png", // 06
-         "images/Meticulous Desk Arrangement-7.png", // 07
-         "images/Anxious Woman on Lavender Background-8.png", // 08
-         "images/Worried Woman in Thought-10(1).png", // 09
-         "images/1d07d484-d3e7-4b91-80d0-64835f0a9fc8.png", // 10
-         "images/e61f8898-f147-4fd7-94cd-2639fed03d2b.png", // 11
-         "images/0abd49bf-55a6-4ccb-b9ed-3a25caf43d74.png", // 12
-         "images/89a306d8-5470-46d4-b442-49a1f45002b8.png", // 13
-         "images/Anxious Young Man on Lavender-2.png", // 02
-         "images/Worried Woman in Lavender Setting-3.png", // 03
-         "images/Sleepless Night in Bed-4.png", // 04
-         "images/Woman Holding Her Stomach in Pain-5.png", // 05
-         "images/Stressed Woman Holding Her Head-6.png", // 06
-         "images/Meticulous Desk Arrangement-7.png", // 07
-         "images/Anxious Woman on Lavender Background-8.png", // 08
-         "images/Worried Woman in Thought-10(1).png", // 09
-         "images/1d07d484-d3e7-4b91-80d0-64835f0a9fc8.png", // 10
-         "images/e61f8898-f147-4fd7-94cd-2639fed03d2b.png", // 11
-         "images/0abd49bf-55a6-4ccb-b9ed-3a25caf43d74.png", // 12
-      ],
-      stress: [
-        "", // 01 — βάλε εδώ π.χ. "images/stress-01.png"
-        "", // 02 — βάλε εδώ π.χ. "images/stress-02.png"
-        "", // 03 — βάλε εδώ π.χ. "images/stress-03.png"
-        "", // 04 — βάλε εδώ π.χ. "images/stress-04.png"
-        "", // 05 — βάλε εδώ π.χ. "images/stress-05.png"
-        "", // 06 — βάλε εδώ π.χ. "images/stress-06.png"
-        "", // 07 — βάλε εδώ π.χ. "images/stress-07.png"
-        "", // 08 — βάλε εδώ π.χ. "images/stress-08.png"
-        "", // 09 — βάλε εδώ π.χ. "images/stress-09.png"
-        "", // 10 — βάλε εδώ π.χ. "images/stress-10.png"
-        "", // 11 — βάλε εδώ π.χ. "images/stress-11.png"
-        "", // 12 — βάλε εδώ π.χ. "images/stress-12.png"
-        "", // 13 — βάλε εδώ π.χ. "images/stress-13.png"
-        "", // 14 — βάλε εδώ π.χ. "images/stress-14.png"
-        "", // 15 — βάλε εδώ π.χ. "images/stress-15.png"
-        "", // 16 — βάλε εδώ π.χ. "images/stress-16.png"
-        "", // 17 — βάλε εδώ π.χ. "images/stress-17.png"
-        "", // 18 — βάλε εδώ π.χ. "images/stress-18.png"
-        "", // 19 — βάλε εδώ π.χ. "images/stress-19.png"
-        "", // 20 — βάλε εδώ π.χ. "images/stress-20.png"
-        "", // 21 — βάλε εδώ π.χ. "images/stress-21.png"
-        "", // 22 — βάλε εδώ π.χ. "images/stress-22.png"
-        "", // 23 — βάλε εδώ π.χ. "images/stress-23.png"
-        "", // 24 — βάλε εδώ π.χ. "images/stress-24.png"
-        "" // 25 — βάλε εδώ π.χ. "images/stress-25.png"
-      ],
-      selfEsteem: [
-        "", // 01 — βάλε εδώ π.χ. "images/selfesteem-01.png"
-        "", // 02 — βάλε εδώ π.χ. "images/selfesteem-02.png"
-        "", // 03 — βάλε εδώ π.χ. "images/selfesteem-03.png"
-        "", // 04 — βάλε εδώ π.χ. "images/selfesteem-04.png"
-        "", // 05 — βάλε εδώ π.χ. "images/selfesteem-05.png"
-        "", // 06 — βάλε εδώ π.χ. "images/selfesteem-06.png"
-        "", // 07 — βάλε εδώ π.χ. "images/selfesteem-07.png"
-        "", // 08 — βάλε εδώ π.χ. "images/selfesteem-08.png"
-        "", // 09 — βάλε εδώ π.χ. "images/selfesteem-09.png"
-        "", // 10 — βάλε εδώ π.χ. "images/selfesteem-10.png"
-        "", // 11 — βάλε εδώ π.χ. "images/selfesteem-11.png"
-        "", // 12 — βάλε εδώ π.χ. "images/selfesteem-12.png"
-        "", // 13 — βάλε εδώ π.χ. "images/selfesteem-13.png"
-        "", // 14 — βάλε εδώ π.χ. "images/selfesteem-14.png"
-        "", // 15 — βάλε εδώ π.χ. "images/selfesteem-15.png"
-        "", // 16 — βάλε εδώ π.χ. "images/selfesteem-16.png"
-        "", // 17 — βάλε εδώ π.χ. "images/selfesteem-17.png"
-        "", // 18 — βάλε εδώ π.χ. "images/selfesteem-18.png"
-        "", // 19 — βάλε εδώ π.χ. "images/selfesteem-19.png"
-        "", // 20 — βάλε εδώ π.χ. "images/selfesteem-20.png"
-        "", // 21 — βάλε εδώ π.χ. "images/selfesteem-21.png"
-        "", // 22 — βάλε εδώ π.χ. "images/selfesteem-22.png"
-        "", // 23 — βάλε εδώ π.χ. "images/selfesteem-23.png"
-        "", // 24 — βάλε εδώ π.χ. "images/selfesteem-24.png"
-        "" // 25 — βάλε εδώ π.χ. "images/selfesteem-25.png"
-      ],
-      depression: [
-        "", // 01 — βάλε εδώ π.χ. "images/depression-01.png"
-        "", // 02 — βάλε εδώ π.χ. "images/depression-02.png"
-        "", // 03 — βάλε εδώ π.χ. "images/depression-03.png"
-        "", // 04 — βάλε εδώ π.χ. "images/depression-04.png"
-        "", // 05 — βάλε εδώ π.χ. "images/depression-05.png"
-        "", // 06 — βάλε εδώ π.χ. "images/depression-06.png"
-        "", // 07 — βάλε εδώ π.χ. "images/depression-07.png"
-        "", // 08 — βάλε εδώ π.χ. "images/depression-08.png"
-        "", // 09 — βάλε εδώ π.χ. "images/depression-09.png"
-        "", // 10 — βάλε εδώ π.χ. "images/depression-10.png"
-        "", // 11 — βάλε εδώ π.χ. "images/depression-11.png"
-        "", // 12 — βάλε εδώ π.χ. "images/depression-12.png"
-        "", // 13 — βάλε εδώ π.χ. "images/depression-13.png"
-        "", // 14 — βάλε εδώ π.χ. "images/depression-14.png"
-        "", // 15 — βάλε εδώ π.χ. "images/depression-15.png"
-        "", // 16 — βάλε εδώ π.χ. "images/depression-16.png"
-        "", // 17 — βάλε εδώ π.χ. "images/depression-17.png"
-        "", // 18 — βάλε εδώ π.χ. "images/depression-18.png"
-        "", // 19 — βάλε εδώ π.χ. "images/depression-19.png"
-        "", // 20 — βάλε εδώ π.χ. "images/depression-20.png"
-        "", // 21 — βάλε εδώ π.χ. "images/depression-21.png"
-        "", // 22 — βάλε εδώ π.χ. "images/depression-22.png"
-        "", // 23 — βάλε εδώ π.χ. "images/depression-23.png"
-        "", // 24 — βάλε εδώ π.χ. "images/depression-24.png"
-        "" // 25 — βάλε εδώ π.χ. "images/depression-25.png"
-      ],
-      relationships: [
-        "", // 01 — βάλε εδώ π.χ. "images/relationships-01.png"
-        "", // 02 — βάλε εδώ π.χ. "images/relationships-02.png"
-        "", // 03 — βάλε εδώ π.χ. "images/relationships-03.png"
-        "", // 04 — βάλε εδώ π.χ. "images/relationships-04.png"
-        "", // 05 — βάλε εδώ π.χ. "images/relationships-05.png"
-        "", // 06 — βάλε εδώ π.χ. "images/relationships-06.png"
-        "", // 07 — βάλε εδώ π.χ. "images/relationships-07.png"
-        "", // 08 — βάλε εδώ π.χ. "images/relationships-08.png"
-        "", // 09 — βάλε εδώ π.χ. "images/relationships-09.png"
-        "", // 10 — βάλε εδώ π.χ. "images/relationships-10.png"
-        "", // 11 — βάλε εδώ π.χ. "images/relationships-11.png"
-        "", // 12 — βάλε εδώ π.χ. "images/relationships-12.png"
-        "", // 13 — βάλε εδώ π.χ. "images/relationships-13.png"
-        "", // 14 — βάλε εδώ π.χ. "images/relationships-14.png"
-        "", // 15 — βάλε εδώ π.χ. "images/relationships-15.png"
-        "", // 16 — βάλε εδώ π.χ. "images/relationships-16.png"
-        "", // 17 — βάλε εδώ π.χ. "images/relationships-17.png"
-        "", // 18 — βάλε εδώ π.χ. "images/relationships-18.png"
-        "", // 19 — βάλε εδώ π.χ. "images/relationships-19.png"
-        "", // 20 — βάλε εδώ π.χ. "images/relationships-20.png"
-        "", // 21 — βάλε εδώ π.χ. "images/relationships-21.png"
-        "", // 22 — βάλε εδώ π.χ. "images/relationships-22.png"
-        "", // 23 — βάλε εδώ π.χ. "images/relationships-23.png"
-        "", // 24 — βάλε εδώ π.χ. "images/relationships-24.png"
-        "" // 25 — βάλε εδώ π.χ. "images/relationships-25.png"
-      ],
-      sexuality: [
-        "", // 01 — βάλε εδώ π.χ. "images/sexuality-01.png"
-        "", // 02 — βάλε εδώ π.χ. "images/sexuality-02.png"
-        "", // 03 — βάλε εδώ π.χ. "images/sexuality-03.png"
-        "", // 04 — βάλε εδώ π.χ. "images/sexuality-04.png"
-        "", // 05 — βάλε εδώ π.χ. "images/sexuality-05.png"
-        "", // 06 — βάλε εδώ π.χ. "images/sexuality-06.png"
-        "", // 07 — βάλε εδώ π.χ. "images/sexuality-07.png"
-        "", // 08 — βάλε εδώ π.χ. "images/sexuality-08.png"
-        "", // 09 — βάλε εδώ π.χ. "images/sexuality-09.png"
-        "", // 10 — βάλε εδώ π.χ. "images/sexuality-10.png"
-        "", // 11 — βάλε εδώ π.χ. "images/sexuality-11.png"
-        "", // 12 — βάλε εδώ π.χ. "images/sexuality-12.png"
-        "", // 13 — βάλε εδώ π.χ. "images/sexuality-13.png"
-        "", // 14 — βάλε εδώ π.χ. "images/sexuality-14.png"
-        "", // 15 — βάλε εδώ π.χ. "images/sexuality-15.png"
-        "", // 16 — βάλε εδώ π.χ. "images/sexuality-16.png"
-        "", // 17 — βάλε εδώ π.χ. "images/sexuality-17.png"
-        "", // 18 — βάλε εδώ π.χ. "images/sexuality-18.png"
-        "", // 19 — βάλε εδώ π.χ. "images/sexuality-19.png"
-        "", // 20 — βάλε εδώ π.χ. "images/sexuality-20.png"
-        "", // 21 — βάλε εδώ π.χ. "images/sexuality-21.png"
-        "", // 22 — βάλε εδώ π.χ. "images/sexuality-22.png"
-        "", // 23 — βάλε εδώ π.χ. "images/sexuality-23.png"
-        "", // 24 — βάλε εδώ π.χ. "images/sexuality-24.png"
-        "" // 25 — βάλε εδώ π.χ. "images/sexuality-25.png"
-      ],
-      adhd: [
-        "", // 01 — βάλε εδώ π.χ. "images/adhd-01.png"
-        "", // 02 — βάλε εδώ π.χ. "images/adhd-02.png"
-        "", // 03 — βάλε εδώ π.χ. "images/adhd-03.png"
-        "", // 04 — βάλε εδώ π.χ. "images/adhd-04.png"
-        "", // 05 — βάλε εδώ π.χ. "images/adhd-05.png"
-        "", // 06 — βάλε εδώ π.χ. "images/adhd-06.png"
-        "", // 07 — βάλε εδώ π.χ. "images/adhd-07.png"
-        "", // 08 — βάλε εδώ π.χ. "images/adhd-08.png"
-        "", // 09 — βάλε εδώ π.χ. "images/adhd-09.png"
-        "", // 10 — βάλε εδώ π.χ. "images/adhd-10.png"
-        "", // 11 — βάλε εδώ π.χ. "images/adhd-11.png"
-        "", // 12 — βάλε εδώ π.χ. "images/adhd-12.png"
-        "", // 13 — βάλε εδώ π.χ. "images/adhd-13.png"
-        "", // 14 — βάλε εδώ π.χ. "images/adhd-14.png"
-        "", // 15 — βάλε εδώ π.χ. "images/adhd-15.png"
-        "", // 16 — βάλε εδώ π.χ. "images/adhd-16.png"
-        "", // 17 — βάλε εδώ π.χ. "images/adhd-17.png"
-        "", // 18 — βάλε εδώ π.χ. "images/adhd-18.png"
-        "", // 19 — βάλε εδώ π.χ. "images/adhd-19.png"
-        "", // 20 — βάλε εδώ π.χ. "images/adhd-20.png"
-        "", // 21 — βάλε εδώ π.χ. "images/adhd-21.png"
-        "", // 22 — βάλε εδώ π.χ. "images/adhd-22.png"
-        "", // 23 — βάλε εδώ π.χ. "images/adhd-23.png"
-        "", // 24 — βάλε εδώ π.χ. "images/adhd-24.png"
-        "" // 25 — βάλε εδώ π.χ. "images/adhd-25.png"
-      ],
-      breakup: [
-        "", // 01 — βάλε εδώ π.χ. "images/breakup-01.png"
-        "", // 02 — βάλε εδώ π.χ. "images/breakup-02.png"
-        "", // 03 — βάλε εδώ π.χ. "images/breakup-03.png"
-        "", // 04 — βάλε εδώ π.χ. "images/breakup-04.png"
-        "", // 05 — βάλε εδώ π.χ. "images/breakup-05.png"
-        "", // 06 — βάλε εδώ π.χ. "images/breakup-06.png"
-        "", // 07 — βάλε εδώ π.χ. "images/breakup-07.png"
-        "", // 08 — βάλε εδώ π.χ. "images/breakup-08.png"
-        "", // 09 — βάλε εδώ π.χ. "images/breakup-09.png"
-        "", // 10 — βάλε εδώ π.χ. "images/breakup-10.png"
-        "", // 11 — βάλε εδώ π.χ. "images/breakup-11.png"
-        "", // 12 — βάλε εδώ π.χ. "images/breakup-12.png"
-        "", // 13 — βάλε εδώ π.χ. "images/breakup-13.png"
-        "", // 14 — βάλε εδώ π.χ. "images/breakup-14.png"
-        "", // 15 — βάλε εδώ π.χ. "images/breakup-15.png"
-        "", // 16 — βάλε εδώ π.χ. "images/breakup-16.png"
-        "", // 17 — βάλε εδώ π.χ. "images/breakup-17.png"
-        "", // 18 — βάλε εδώ π.χ. "images/breakup-18.png"
-        "", // 19 — βάλε εδώ π.χ. "images/breakup-19.png"
-        "", // 20 — βάλε εδώ π.χ. "images/breakup-20.png"
-        "", // 21 — βάλε εδώ π.χ. "images/breakup-21.png"
-        "", // 22 — βάλε εδώ π.χ. "images/breakup-22.png"
-        "", // 23 — βάλε εδώ π.χ. "images/breakup-23.png"
-        "", // 24 — βάλε εδώ π.χ. "images/breakup-24.png"
-        "" // 25 — βάλε εδώ π.χ. "images/breakup-25.png"
-      ]
     };
 
     /* =========================
@@ -1996,13 +1754,6 @@
       document.getElementById("quizTestTitle").textContent = test.title;
       document.getElementById("questionTag").textContent = test.short;
       document.getElementById("questionText").textContent = question.text;
-      // ΔΙΚΗ ΣΟΥ ΕΙΚΟΝΑ ΑΝ ΥΠΑΡΧΕΙ — διαφορετική για κάθε ερώτηση
-      const customQuestionImage =
-        QUESTION_IMAGES[state.currentTestKey]?.[state.currentQuestionIndex] || "";
-      document.getElementById("questionIllustrationImg").src =
-        customQuestionImage || question.image || test.art;
-      document.getElementById("questionIllustrationImg").alt =
-        `Εικονογράφηση: ${question.text}`;
       document.getElementById("progressLabel").textContent = `Ερώτηση ${current} από ${total}`;
       document.getElementById("progressPercent").textContent = `${percent}%`;
       document.getElementById("progressBar").style.width = `${percent}%`;
