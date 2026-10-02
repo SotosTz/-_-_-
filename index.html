@@ -14,7 +14,6 @@
     href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
     rel="stylesheet"
   />
-  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
   <style>
     :root{
@@ -1224,22 +1223,6 @@
     const EBOOK_DESCRIPTION = "Ένας πρακτικός οδηγός για να κατανοήσεις καλύτερα το άγχος, να αναγνωρίζεις τα μοτίβα που το ενισχύουν και να εφαρμόζεις πρακτικές τεχνικές διαχείρισης, αποφόρτισης και αυτοπαρατήρησης στην καθημερινότητα.";
 
     /* ==========================================================
-       ΑΠΟΣΤΟΛΗ ΑΠΟΤΕΛΕΣΜΑΤΟΣ ΣΤΟ EMAIL ΤΟΥ ΧΡΗΣΤΗ — EMAILJS
-       1) Φτιάχνεις λογαριασμό στο EmailJS.
-       2) Συνδέεις το email/service αποστολής σου.
-       3) Στο Email Template βάλε ως παραλήπτη (To Email): {{to_email}}
-       4) Στο body του template μπορείς να χρησιμοποιήσεις:
-          {{test_title}}, {{score_value}}, {{score_level}},
-          {{result_headline}}, {{result_analysis}},
-          {{ebook_title}}, {{ebook_description}}, {{ebook_url}}, {{disclaimer}}
-       5) Βάζεις παρακάτω PUBLIC KEY, SERVICE ID και TEMPLATE ID.
-       Χωρίς αυτά τα 3 στοιχεία ένα στατικό GitHub Pages site δεν μπορεί να στείλει email μόνο του.
-       ========================================================== */
-    const EMAILJS_PUBLIC_KEY = "sMKrs5sb9IIdQMG0s";
-    const EMAILJS_SERVICE_ID = "service_22yedqh";
-    const EMAILJS_TEMPLATE_ID = "template_2rufbxf";
-
-    /* ==========================================================
        KLAVIYO — ΕΓΓΡΑΦΗ ΣΤΗ ΛΙΣΤΑ QUIZ - SUBSCRIBERS
        Χρησιμοποιείται μόνο το email για την ενεργοποίηση του Klaviyo flow.
        Δεν αποστέλλονται στο Klaviyo οι απαντήσεις, το σκορ ή το αποτέλεσμα του quiz.
@@ -1247,12 +1230,6 @@
     const KLAVIYO_PUBLIC_API_KEY = "Xe4Pck";
     const KLAVIYO_LIST_ID = "U9fZ4J";
     const KLAVIYO_REVISION = "2026-07-15";
-
-    if (EMAILJS_PUBLIC_KEY) {
-      emailjs.init({
-        publicKey: EMAILJS_PUBLIC_KEY
-      });
-    }
 
     /* =========================
        ΒΟΗΘΗΤΙΚΑ
@@ -2159,85 +2136,6 @@
       };
     }
 
-    async function sendEmailWithEmailJS(result) {
-      if (!EMAILJS_PUBLIC_KEY || !EMAILJS_SERVICE_ID || !EMAILJS_TEMPLATE_ID) {
-        return { ok: false, reason: "not_configured" };
-      }
-
-      try {
-        await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
-          to_email: state.email,
-          user_email: state.email,
-          reply_to: state.email,
-          email_consent: "Ναι — αποτελέσματα και ενημερωτικό υλικό",
-          brand_name: BRAND_NAME,
-          test_title: result.testTitle,
-          score_value: `${result.percent}/100`,
-          score_level: result.level,
-          result_headline: result.headline,
-          result_summary: result.summary,
-          result_analysis: result.analysisParagraphs.join("\n\n"),
-          result_impact: result.impact,
-          result_action: result.action,
-          result_load: result.load,
-          ebook_title: result.ebookTitle,
-          ebook_description: result.ebookDescription,
-          ebook_url: SHOPIFY_URL,
-          disclaimer: "Το quiz δεν αποτελεί διάγνωση και δεν υποκαθιστά επαγγελματική ψυχολογική ή ιατρική αξιολόγηση."
-        });
-        return { ok: true };
-      } catch (err) {
-        console.error("EmailJS error:", err);
-        return { ok: false, reason: "send_failed", error: err };
-      }
-    }
-
-    function submitKlaviyoFallbackForm(email) {
-      try {
-        let iframe = document.getElementById("klaviyoHiddenTarget");
-        if (!iframe) {
-          iframe = document.createElement("iframe");
-          iframe.id = "klaviyoHiddenTarget";
-          iframe.name = "klaviyoHiddenTarget";
-          iframe.style.display = "none";
-          document.body.appendChild(iframe);
-        }
-
-        const form = document.createElement("form");
-        // Επίσημο Klaviyo embedded subscribe endpoint.
-        // Η Klaviyo τεκμηριώνει αυτό το endpoint με GET για embedded signup forms.
-        form.method = "GET";
-        form.action = "https://manage.kmail-lists.com/subscriptions/subscribe";
-        form.target = "klaviyoHiddenTarget";
-        form.acceptCharset = "UTF-8";
-        form.style.display = "none";
-
-        const fields = {
-          g: KLAVIYO_LIST_ID,
-          email: email,
-          "$fields": "$consent",
-          "$list_fields": "$consent",
-          "$consent": "email"
-        };
-
-        Object.entries(fields).forEach(([name, value]) => {
-          const input = document.createElement("input");
-          input.type = "hidden";
-          input.name = name;
-          input.value = value;
-          form.appendChild(input);
-        });
-
-        document.body.appendChild(form);
-        form.submit();
-        setTimeout(() => form.remove(), 1500);
-        return { ok: true, fallback: true };
-      } catch (err) {
-        console.error("Klaviyo fallback form error:", err);
-        return { ok: false, reason: "fallback_failed", error: err };
-      }
-    }
-
     async function subscribeEmailToKlaviyo(email) {
       if (!KLAVIYO_PUBLIC_API_KEY || !KLAVIYO_LIST_ID) {
         return { ok: false, reason: "not_configured" };
@@ -2295,14 +2193,13 @@
         try { details = await response.text(); } catch (_) {}
         console.error("Klaviyo client subscription error:", response.status, details);
 
-        // Εφεδρική επίσημη μέθοδος φόρμας Klaviyo, χωρίς redirect του χρήστη.
-        return submitKlaviyoFallbackForm(email);
+        // Δεν εμφανίζουμε επιτυχία αν η εγγραφή απορρίφθηκε.
+        return { ok: false, reason: "subscription_failed" };
       } catch (err) {
         console.error("Klaviyo client subscription network/CORS error:", err);
 
-        // Αν ο browser μπλοκάρει το API request, στέλνουμε την ίδια εγγραφή
-        // μέσω κρυφής Klaviyo subscribe form.
-        return submitKlaviyoFallbackForm(email);
+        // Η εγγραφή δεν επιβεβαιώθηκε λόγω σφάλματος δικτύου.
+        return { ok: false, reason: "subscription_failed" };
       }
     }
 
@@ -2312,7 +2209,7 @@
 
       if (delivery.ok) {
         status.className = "email-delivery-status success";
-        status.textContent = "Τα αποτελέσματά σας έχουν έρθει επιτυχώς στο email σας.";
+        status.textContent = "Το αίτημα εγγραφής καταχωρίστηκε. Έλεγξε το inbox και τα ανεπιθύμητα· αν ζητηθεί επιβεβαίωση εγγραφής, ολοκλήρωσέ την για να λάβεις τα email μας.";
       } else if (delivery.reason === "not_configured") {
         status.className = "email-delivery-status error";
         status.textContent = "Το αποτέλεσμα εμφανίστηκε κανονικά, αλλά η σύνδεση με το Klaviyo δεν είναι ακόμη ρυθμισμένη.";
@@ -2398,10 +2295,9 @@
       updateResultsScreen(result);
       goTo("results");
 
-      // Το αποτέλεσμα εμφανίζεται αμέσως στη σελίδα
-      // Στέλνουμε το αποτέλεσμα απευθείας με EmailJS κάθε φορά που ολοκληρώνεται το τεστ.
-      // Έτσι το ίδιο email μπορεί να λάβει ξανά αποτέλεσμα αν κάνει ξανά το τεστ.
-      const delivery = await sendEmailWithEmailJS(result);
+      // Τα αποτελέσματα εμφανίζονται στη σελίδα. Μόνο το Klaviyo στέλνει email.
+      // Η εγγραφή στη λίστα ενεργοποιεί το flow σύμφωνα με τις ρυθμίσεις του.
+      const delivery = await subscribeEmailToKlaviyo(email);
       updateEmailDeliveryStatus(delivery);
     });
 
