@@ -2209,7 +2209,7 @@
 
       if (delivery.ok) {
         status.className = "email-delivery-status success";
-        status.textContent = "Το αίτημα εγγραφής καταχωρίστηκε. Έλεγξε το inbox και τα ανεπιθύμητα· αν ζητηθεί επιβεβαίωση εγγραφής, ολοκλήρωσέ την για να λάβεις τα email μας.";
+        status.textContent = "Η εγγραφή σου ολοκληρώθηκε επιτυχώς. Έλεγξε το email σου για το μήνυμά μας.";
       } else if (delivery.reason === "not_configured") {
         status.className = "email-delivery-status error";
         status.textContent = "Το αποτέλεσμα εμφανίστηκε κανονικά, αλλά η σύνδεση με το Klaviyo δεν είναι ακόμη ρυθμισμένη.";
@@ -2284,7 +2284,7 @@
       }
 
       if (!consentPrivacy) {
-        alert("Χρειάζεται να αποδεχτείς την πολιτική απορρήτου και τους όρους χρήσης.");
+        alert("Πρέπει να αποδεχτείτε τους όρους χρήσης και την πολιτική απορρήτου για να συνεχίσετε.");
         return;
       }
 
