@@ -2209,7 +2209,7 @@
 
       if (delivery.ok) {
         status.className = "email-delivery-status success";
-        status.textContent = "Η εγγραφή σου ολοκληρώθηκε επιτυχώς. Έλεγξε το email σου για το μήνυμά μας.";
+        status.textContent = "Το αποτέλεσμα του τεστ έχει σταλεί επιτυχώς στο email σας. Ελέγξτε τα εισερχόμενα και τα SPAM.";
       } else if (delivery.reason === "not_configured") {
         status.className = "email-delivery-status error";
         status.textContent = "Το αποτέλεσμα εμφανίστηκε κανονικά, αλλά η σύνδεση με το Klaviyo δεν είναι ακόμη ρυθμισμένη.";
